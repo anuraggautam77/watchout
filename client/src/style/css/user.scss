@@ -1,0 +1,181 @@
+.user-panel{
+    .detailPage{
+
+    }
+    /* Everything but the jumbotron gets side spacing for mobile first views */
+    h3,h1{
+        font-family: 'Arima Madurai', cursive !important;
+    }
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    /* Custom page header */
+
+    .header {
+        border-bottom: 3px solid rgb(125, 19, 19);
+    }
+    /* Make the masthead heading the same height as the navigation */
+
+    .header h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding-bottom: 19px;
+    }
+    a {
+        text-decoration: none !important;
+    }
+    /* Custom page footer */
+
+    .footer {
+        padding-top: 19px;
+        color: #777;
+        border-top: 1px solid #e5e5e5;
+    }
+    /* Customize container */
+
+    @media (min-width: 768px) {
+        .container {
+            // max-width: 730px;
+        }
+    }
+    .container-narrow > hr {
+        margin: 30px 0;
+    }
+    /* Main marketing message and sign up button */
+
+    .jumbotron {
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: transparent !important;
+    }
+    .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+    }
+    /* Supporting marketing content */
+
+    .marketing {
+        margin: 40px 0;
+    }
+    .marketing p + h4 {
+        margin-top: 28px;
+    }
+    /* Responsive: Portrait tablets and up */
+
+    @media screen and (min-width: 768px) {
+        /* Remove the padding we set earlier */
+
+        .header,
+        .marketing,
+        .footer {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        /* Space out the masthead */
+
+        .header {
+            //margin-bottom: 30px;
+        }
+        /* Remove the bottom border on the jumbotron for visual effect */
+
+        .jumbotron {
+            border-bottom: 0;
+            background-color: transparent !important;
+        }
+        .notice {
+            padding: 15px;
+            background-color: #fafafa;
+            border-left: 6px solid #7f7f84;
+            margin-bottom: 10px;
+            -webkit-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+            box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+        }
+        .notice-lg {
+            padding: 35px;
+            font-size: large;
+        }
+    }
+
+
+    /***************polls tiles***************
+    *****************************************/
+
+    p, span, a, ul, li, button {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+
+    h1, h2, h4, h5, h6,p,a,button {
+        font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.5em;
+        font-weight: 300;
+    }
+
+    .card {
+        border: 1px solid #d3d3d3;
+        border-radius: .25rem;
+    }
+    .bg-img {
+        background-size: cover;
+        min-height: 54px;
+        background-position: center;
+        background-color: #ccc;
+    }
+
+    button {
+
+        font-weight: bold;
+    }
+
+    strong {
+        font-weight: 400;
+    }
+
+    .tile {
+        width: 100%;
+        display: inline-block;
+        box-sizing: border-box;
+        background: #fff;
+        padding:13px;
+        margin-bottom: 30px;
+        a{
+            color:#fff;
+        }
+    }
+    .tile .title {
+        margin-top: 0px;
+    }
+    .tile.purple, .tile.blue, .tile.red, .tile.orange, .tile.green {
+        color: #fff;
+    }
+    .tile.blue {
+        background: #2672ec;
+    }
+    .tile.orange{
+        background: #d49c46; 
+    }
+    .tile.orange:hover{
+        background: #d49c46; 
+    }
+    .tile.blue:hover {
+        background: #125acd;
+    }
+    .tile.green{
+        background:rgb(137, 183, 130);
+    }
+    .tile.green:hover{
+        background: #72986c
+    }
+
+} 

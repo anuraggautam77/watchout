@@ -1,0 +1,416 @@
+@import url(https://fonts.googleapis.com/css?family=Arima+Madurai);/*      light colors - used for select dropdown         */
+body {
+  padding-top: 0;
+  padding-bottom: 0; }
+  body .container-full {
+    width: 100%;
+    margin: 0 auto; }
+
+.box {
+  position: relative;
+  border-radius: 3px;
+  background: white;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+
+.box.box-success {
+  border-top-color: #00a65a; }
+
+.dn {
+  display: none; }
+
+.db {
+  display: block; }
+
+a {
+  text-decoration: none; }
+
+.funkyradio div {
+  clear: both;
+  overflow: hidden; }
+
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal; }
+
+.funkyradio input[type="radio"]:empty {
+  display: none; }
+
+.funkyradio input[type="radio"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.funkyradio input[type="radio"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px; }
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label {
+  color: #888; }
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2; }
+
+.funkyradio input[type="radio"]:checked ~ label {
+  color: #777; }
+
+.funkyradio input[type="radio"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc; }
+
+.funkyradio input[type="radio"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999; }
+
+.funkyradio-default input[type="radio"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc; }
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before {
+  color: #fff;
+  background-color: #337ab7; }
+
+.funkyradio-success input[type="radio"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5cb85c; }
+
+.funkyradio-danger input[type="radio"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f; }
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e; }
+
+.funkyradio-info input[type="radio"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de; }
+
+.correct-answer {
+  background-color: #5cb85c;
+  color: #fff; }
+
+.wrong-answer {
+  background-color: #f27173;
+  color: #fff; }
+
+.card {
+  border-radius: 6px;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  background-color: #FFFFFF;
+  color: #252422;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1; }
+  .card .image {
+    width: 100%;
+    overflow: hidden;
+    height: 260px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+    .card .image img {
+      width: 100%; }
+  .card .content {
+    padding: 15px 15px 10px 15px; }
+  .card .header {
+    padding: 20px 20px 0; }
+  .card .description {
+    font-size: 16px;
+    color: #66615b; }
+  .card h6 {
+    font-size: 12px;
+    margin: 0; }
+  .card .category,
+  .card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    margin-bottom: 0px; }
+    .card .category i,
+    .card label i {
+      font-size: 16px; }
+  .card label {
+    font-size: 15px;
+    margin-bottom: 5px; }
+  .card .title {
+    margin: 0;
+    color: #252422;
+    font-weight: 300; }
+  .card .avatar {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px; }
+  .card .footer {
+    padding: 0;
+    line-height: 30px; }
+    .card .footer .legend {
+      padding: 5px 0; }
+    .card .footer hr {
+      margin-top: 5px;
+      margin-bottom: 5px; }
+  .card .stats {
+    color: #a9a9a9;
+    font-weight: 300; }
+    .card .stats i {
+      margin-right: 2px;
+      min-width: 15px;
+      display: inline-block; }
+  .card .footer div {
+    display: inline-block; }
+  .card .author {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase; }
+  .card .author i {
+    font-size: 14px; }
+  .card.card-separator:after {
+    height: 100%;
+    right: -15px;
+    top: 0;
+    width: 1px;
+    background-color: #DDDDDD;
+    content: "";
+    position: absolute; }
+  .card .ct-chart {
+    margin: 30px 0 30px;
+    height: 245px; }
+  .card .table tbody td:first-child,
+  .card .table thead th:first-child {
+    padding-left: 15px; }
+  .card .table tbody td:last-child,
+  .card .table thead th:last-child {
+    padding-right: 15px; }
+  .card .alert {
+    border-radius: 4px;
+    position: relative; }
+    .card .alert.alert-with-icon {
+      padding-left: 65px; }
+  .card .icon-big {
+    font-size: 3em;
+    min-height: 64px; }
+  .card .numbers {
+    font-size: 2em;
+    text-align: right; }
+    .card .numbers p {
+      margin: 0; }
+  .card ul.team-members li {
+    padding: 10px 0px; }
+    .card ul.team-members li:not(:last-child) {
+      border-bottom: 1px solid #F1EAE0; }
+
+.card-user .image {
+  border-radius: 8px 8px 0 0;
+  height: 150px;
+  position: relative;
+  overflow: hidden; }
+  .card-user .image img {
+    width: 100%; }
+
+.card-user .image-plain {
+  height: 0;
+  margin-top: 110px; }
+
+.card-user .author {
+  text-align: center;
+  text-transform: none;
+  margin-top: -65px; }
+  .card-user .author .title {
+    color: #403D39; }
+    .card-user .author .title small {
+      color: #ccc5b9; }
+
+.card-user .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 15px; }
+  .card-user .avatar.border-white {
+    border: 5px solid #FFFFFF; }
+  .card-user .avatar.border-gray {
+    border: 5px solid #ccc5b9; }
+
+.card-user .title {
+  font-weight: 600;
+  line-height: 24px; }
+
+.card-user .description {
+  margin-top: 10px; }
+
+.card-user .content {
+  min-height: 200px; }
+
+.card-user.card-plain .avatar {
+  height: 190px;
+  width: 190px; }
+
+.card-map .map {
+  height: 500px;
+  padding-top: 20px; }
+  .card-map .map > div {
+    height: 100%; }
+
+.card-user .footer,
+.card-price .footer {
+  padding: 5px 15px 10px; }
+
+.card-user hr,
+.card-price hr {
+  margin: 5px 15px; }
+
+.card-plain {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0; }
+  .card-plain .image {
+    border-radius: 4px; }
+.user-panel {
+  /* Everything but the jumbotron gets side spacing for mobile first views */
+  /* Custom page header */
+  /* Make the masthead heading the same height as the navigation */
+  /* Custom page footer */
+  /* Customize container */
+  /* Main marketing message and sign up button */
+  /* Supporting marketing content */
+  /* Responsive: Portrait tablets and up */
+  /***************polls tiles***************
+    *****************************************/ }
+  .user-panel h3, .user-panel h1 {
+    font-family: 'Arima Madurai', cursive !important; }
+  .user-panel .header,
+  .user-panel .marketing,
+  .user-panel .footer {
+    padding-left: 15px;
+    padding-right: 15px; }
+  .user-panel .header {
+    border-bottom: 3px solid #7d1313; }
+  .user-panel .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px; }
+  .user-panel a {
+    text-decoration: none !important; }
+  .user-panel .footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5; }
+  .user-panel .container-narrow > hr {
+    margin: 30px 0; }
+  .user-panel .jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: transparent !important; }
+  .user-panel .jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px; }
+  .user-panel .marketing {
+    margin: 40px 0; }
+  .user-panel .marketing p + h4 {
+    margin-top: 28px; }
+  @media screen and (min-width: 768px) {
+    .user-panel {
+      /* Remove the padding we set earlier */
+      /* Space out the masthead */
+      /* Remove the bottom border on the jumbotron for visual effect */ }
+      .user-panel .header,
+      .user-panel .marketing,
+      .user-panel .footer {
+        padding-left: 0;
+        padding-right: 0; }
+      .user-panel .jumbotron {
+        border-bottom: 0;
+        background-color: transparent !important; }
+      .user-panel .notice {
+        padding: 15px;
+        background-color: #fafafa;
+        border-left: 6px solid #7f7f84;
+        margin-bottom: 10px;
+        box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2); }
+      .user-panel .notice-lg {
+        padding: 35px;
+        font-size: large; } }
+  .user-panel p, .user-panel span, .user-panel a, .user-panel ul, .user-panel li, .user-panel button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit; }
+  .user-panel strong {
+    font-weight: 600; }
+  .user-panel h1, .user-panel h2, .user-panel h4, .user-panel h5, .user-panel h6, .user-panel p, .user-panel a, .user-panel button {
+    font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5em;
+    font-weight: 300; }
+  .user-panel .card {
+    border: 1px solid #d3d3d3;
+    border-radius: .25rem; }
+  .user-panel .bg-img {
+    background-size: cover;
+    min-height: 54px;
+    background-position: center;
+    background-color: #ccc; }
+  .user-panel button {
+    font-weight: bold; }
+  .user-panel strong {
+    font-weight: 400; }
+  .user-panel .tile {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 13px;
+    margin-bottom: 30px; }
+    .user-panel .tile a {
+      color: #fff; }
+  .user-panel .tile .title {
+    margin-top: 0px; }
+  .user-panel .tile.purple, .user-panel .tile.blue, .user-panel .tile.red, .user-panel .tile.orange, .user-panel .tile.green {
+    color: #fff; }
+  .user-panel .tile.blue {
+    background: #2672ec; }
+  .user-panel .tile.orange {
+    background: #d49c46; }
+  .user-panel .tile.orange:hover {
+    background: #d49c46; }
+  .user-panel .tile.blue:hover {
+    background: #125acd; }
+  .user-panel .tile.green {
+    background: #89b782; }
+  .user-panel .tile.green:hover {
+    background: #72986c; }
+.adminlogin #login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA; }
+
+.adminlogin #login .container #login-row #login-column #login-box #login-form {
+  padding: 20px; }
+
+.adminlogin #login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px; }
