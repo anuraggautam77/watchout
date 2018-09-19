@@ -11,7 +11,7 @@
   "private": true,
   "scripts": {
     "start:dev": "webpack -p --progress --profile --colors && node server",
-    "start": "nodemon server"
+    "start": "node server"
   },
   "dependencies": {
     "async": "^2.6.1",
