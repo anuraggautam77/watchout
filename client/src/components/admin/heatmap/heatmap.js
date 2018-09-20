@@ -48,7 +48,6 @@ class Heatmap extends Component {
                 color = this.color[0];
                 break;
         }
-        console.log(color)
         return color;
 
     }
@@ -62,15 +61,10 @@ class Heatmap extends Component {
 
     }
     render() {
-        console.log();
 
         this.state.map.areas.map((option) => {
-
-            console.log(this.getPercentageWiseColor(option.percentage));
             option.fillColor = this.getPercentageWiseColor(option.percentage)
-
         })
-
 
         return (
                 <div className="col-md-9">

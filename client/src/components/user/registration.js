@@ -26,7 +26,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-            // this.props.history.push('/');
+             this.props.history.push('/');
         }
     }
     clicked(area) {
@@ -123,10 +123,6 @@ class Registration extends Component {
                         </div>
                 
                         <div className="row">
-                
-                
-                
-                
                             <div className="form-group canvas-container col-md-12">
                                 <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />
                             </div>
@@ -141,22 +137,19 @@ class Registration extends Component {
                                     onClick={
                                 () => {
                                     this.registerUser()
-                                                                                                                                                                                  }}
+                                                                                                                                                                                                  }}
                                     />
                             </div>
                         </div>
                     </div>
-                    <div className={
-                                    `${this.state.navigation}`}>
-                        <h2>  Hi {
-                                                this.state.name},
+                    <div className={ `${this.state.navigation}`}>
+                        <h2>  Hi {  this.state.name},
                             Thank you for subscribing.  <small />
                         </h2>       
                 
                     </div>
                 </div>
-
-                                );
+     );
         }
     }
 
