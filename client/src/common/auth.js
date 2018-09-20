@@ -31,7 +31,7 @@ class Auth {
 
             }
         });*/
-         return true;
+         //return true;
            return localStorage.getItem('jwtToken') !== null;
     }
     /**
