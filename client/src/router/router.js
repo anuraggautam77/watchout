@@ -41,8 +41,8 @@ const PrivateRoute =({ component: Component, ...rest }) => (
          
         return ( <Router>
                     <div>
-                     <Route path="/" exact component={MainPage} />
-                     <Route path="/signup" exact component={Landing} />
+                     <Route path="/" exact component={Landing} />
+                     <Route path="/signup" exact component={MainPage} />
                      <Route path="/question/:id/:type" exact component={UserPollPage} />
                      
             
