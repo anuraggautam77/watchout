@@ -2,7 +2,7 @@
 
 import React, { Component }
 from 'react';
-import { BrowserRouter as Router, Route, Link }
+import { BrowserRouter as Router, Route, Link ,withRouter}
 from "react-router-dom";
 import Masonry from 'react-masonry-component';
 
@@ -18,6 +18,14 @@ class PollList extends Component {
         this.state = {
             list: []
         };
+        
+        var devicetoken = window.localStorage.getItem('deviceToken');
+        var subscriber = window.localStorage.getItem('subscriber');
+        if (subscriber == null && devicetoken == null) {
+            this.props.history.push('/');
+        } 
+        
+        
     }
     componentWillMount() {
         fetch('/api/pollquizlist', {
@@ -64,4 +72,4 @@ class PollList extends Component {
     }
 }
 
-export default PollList;
+export default withRouter(PollList);

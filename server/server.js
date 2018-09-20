@@ -24,7 +24,7 @@ require('./config/passport')(passport);
 const app = express();
 const apiRoutes = express.Router();
 const isDev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3200;
 
 
 const server = app.listen(port, function () {

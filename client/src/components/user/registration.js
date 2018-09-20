@@ -20,14 +20,21 @@ class Registration extends Component {
             url: '../img/floorplan/desktop/10-floor.PNG',
             deviceid: window.localStorage.getItem('deviceToken')
         }
+
+ 
+      
+        
     }
     componentWillMount() {
-        this.setState({"map": floordata[10]});
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-             this.props.history.push('/');
+            this.props.history.push('/mainpage');
+        }else{
+           this.setState({"map": floordata[10]}); 
         }
+        
+          
     }
     clicked(area) {
         this.setState({...this.state, projectname: area.title, lid: area.id});
@@ -63,7 +70,7 @@ class Registration extends Component {
         console.log(this.refs);
         return (
                 <div className="row">
-                    <div className={ `col-xs-12 col-sm-8 col-md-6 ${this.state.showform}`}>
+                    <div className={ `col-xs-12 col-sm-8 col-md-12 ${this.state.showform}`}>
                         <h2>
                             Please Sign Up <small />
                         </h2>
@@ -117,15 +124,25 @@ class Registration extends Component {
                                 </select>
                             </div>
                             <div className="form-group col-md-6">
+                
                                 {
-                                                this.state.projectname }
+                                this.state.projectname }
                             </div>
                         </div>
                 
                         <div className="row">
                             <div className="form-group canvas-container col-md-12">
-                                <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />
-                            </div>
+                               {
+                                (()=>{
+                                    
+                                    if(this.state.map.length>0){
+                                       return( <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />) 
+                                    }
+                         
+                                })()
+                    
+                                }
+                                  </div>
                         </div>
                         <hr className="colorgraph" />
                         <div className="row">
@@ -137,7 +154,7 @@ class Registration extends Component {
                                     onClick={
                                 () => {
                                     this.registerUser()
-                                                                                                                                                                                                  }}
+                                                                                                                                                                                                                  }}
                                     />
                             </div>
                         </div>
@@ -149,7 +166,7 @@ class Registration extends Component {
                 
                     </div>
                 </div>
-     );
+                                );
         }
     }
 

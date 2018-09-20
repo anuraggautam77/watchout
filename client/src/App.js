@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import { withRouter } from "react-router-dom";
-var QRCode = require('qrcode.react');
+//var QRCode = require('qrcode.react');
 import './style/css/App.scss';
 import Routing from './router/router';
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
         super(props);
         this.state = {};
 
-        /*  <QRCode value="https://anuraggautam77.github.io" /> */
+       //  <QRCode value="https://anuraggautam77.github.io "/>  
     }
     render() {
         return (<Routing/>);
