@@ -29,7 +29,11 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-            this.props.history.push('/mainpage');
+      
+              this.setState({"map": []});
+             this.props.history.push('/mainpage');
+             
+               
         }else{
            this.setState({"map": floordata[10]}); 
         }
@@ -67,7 +71,7 @@ class Registration extends Component {
         }
     }
     render() {
-        console.log(this.refs);
+         
         return (
                 <div className="row">
                     <div className={ `col-xs-12 col-sm-8 col-md-12 ${this.state.showform}`}>
@@ -134,10 +138,14 @@ class Registration extends Component {
                             <div className="form-group canvas-container col-md-12">
                                {
                                 (()=>{
-                                    
-                                    if(this.state.map.length>0){
-                                       return( <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />) 
+                                     
+                                    if(this.state.map.length==0){
+                                        
+                                    }else{
+                                     return( <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />) 
+                                   
                                     }
+                                      
                          
                                 })()
                     
