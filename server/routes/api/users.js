@@ -86,9 +86,9 @@ module.exports = (apiRoutes) => {
                 bcrypt.hash(req.body.password, salt, null, function (err, hash) {
                     req.body.password = hash;
                     console.log(hash)
-                    /*  AppModel.adminRegis(req.body, function (result) {
+                     AppModel.adminRegis(req.body, function (result) {
                      res.json({data: result});
-                     });*/
+                     }); 
                 });
             });
 
