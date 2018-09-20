@@ -1,6 +1,8 @@
 const neo4j = require('neo4j');
-const  dbConfig = {url: 'localhost:7474/', username: 'neo4j', pass: '1234', host: 'http:'};
-//const dbConfig = {url: '35.196.83.113:4502/', username: 'neo4j', pass: 'neo4j123', host: 'http:'};
+//const  dbConfig = {url: 'localhost:7474/', username: 'neo4j', pass: '1234', host: 'http:'};
+const dbConfig = {url: '35.240.213.52:4502/', username: 'neo4j', pass: 'qazplm@123', host: 'http:'};
+
+ 
 
 
 /*
