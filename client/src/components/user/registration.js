@@ -1,9 +1,14 @@
 import React, { Component }
 from "react";
-//import ImageMapper from "react-image-mapper";
 
 import ImageMapper from "../../common/ImageMapper";
 import { withRouter } from "react-router-dom";
+import Hashids from "hashids";
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
+
+//
+
+
 var floordata = require("../../common/floorplan");
 
 class Registration extends Component {
@@ -13,7 +18,7 @@ class Registration extends Component {
             projectname: '',
             map: [],
             showform: 'db',
-            navigation: "dn",
+            navigation: "db",
             floorno: 10,
             name: '',
             lid: '',
@@ -21,38 +26,41 @@ class Registration extends Component {
             deviceid: window.localStorage.getItem('deviceToken')
         };
 
- 
-      
-        
     }
     componentWillMount() {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-      
-              this.setState({"map": []});
-             this.props.history.push('/mainpage');
-             
-               
-        }else{
-           this.setState({"map": floordata[10]}); 
+
+            this.setState({"map": []});
+            //  this.props.history.push('/mainpage');
+
+
+        } else {
+            this.setState({"map": floordata[10]});
         }
-        
-          
+
+
     }
     clicked(area) {
         this.setState({...this.state, projectname: area.title, lid: area.id});
     }
     registerUser() {
         if (this.refs.mobileno.value !== '' && this.refs.name.value !== '' && this.state.lid !== '' && this.state.projectname !== '') {
+            var hashids = new Hashids(this.refs.name.value);
+            var refcode = hashids.encode(1, 2, 3); // Z4UrtW
+
             var userInfo = {
                 lid: this.state.lid,
                 projectname: this.state.projectname,
                 deviceid: this.state.deviceid,
                 floorno: this.state.floorno,
                 mobileno: this.refs.mobileno.value,
-                name: this.refs.name.value
-            }
+                name: this.refs.name.value,
+                generatecode: refcode
+            };
+
+
 
             fetch('/api/userregistration', {
                 method: 'POST',
@@ -64,6 +72,8 @@ class Registration extends Component {
             }).then(res => res.json()).then(json => {
                 window.localStorage.setItem('subscriber', json.data[0].id);
                 window.localStorage.setItem('mno', this.refs.mobileno.value);
+                window.localStorage.setItem('refercode', refcode);
+
                 this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
             });
         } else {
@@ -71,7 +81,7 @@ class Registration extends Component {
         }
     }
     render() {
-         
+
         return (
                 <div className="row">
                     <div className={ `col-xs-12 col-sm-8 col-md-12 ${this.state.showform}`}>
@@ -130,27 +140,27 @@ class Registration extends Component {
                             <div className="form-group col-md-6">
                 
                                 {
-                                this.state.projectname }
+                                                this.state.projectname }
                             </div>
                         </div>
                 
                         <div className="row">
                             <div className="form-group canvas-container col-md-12">
-                               {
-                                (()=>{
-                                     
-                                    if(this.state.map.length==0){
-                                        
-                                    }else{
-                                     return( <ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />) 
-                                   
-                                    }
-                                      
-                         
-                                })()
-                    
+                                {
+                                                (() => {
+
+                                                    if (this.state.map.length == 0) {
+
+                                }else{
+                                                                    return(<ImageMapper  src={ this.state.url} map={ this.state.map}  onClick={ area => this.clicked(area)} />)
+
                                 }
-                                  </div>
+                
+                
+                                })()
+                
+                                }
+                            </div>
                         </div>
                         <hr className="colorgraph" />
                         <div className="row">
@@ -160,21 +170,41 @@ class Registration extends Component {
                                     value="Register"
                                     className="btn btn-primary btn-login btn-lg"
                                     onClick={
-                                () => {
-                                    this.registerUser()
-                                                                                                                                                                                                                  }}
+                                            () => {
+                                                this.registerUser()
+                                                                                                                                                                                                                                                                                                                                  }}
                                     />
                             </div>
                         </div>
                     </div>
-                    <div className={ `${this.state.navigation}`}>
-                        <h2>  Hi {  this.state.name},
-                            Thank you for subscribing.  <small />
-                        </h2>       
+                    <div className={ `col-xs-12 col-sm-8 col-md-12 ${this.state.navigation}`}>
+                        <div className="row">
+                
+                            <h3> Hi {this.state.name},
+                                Thanks for registration, Don't miss the notifications to increase your chances of winning prizes.  <small />
+                            </h3>   
+                
+                            <p> Your referral code is:  <b>{window.localStorage.getItem('refercode')}  
+                                    <WhatsappShareButton 
+                                        url={`Referral Code: ${window.localStorage.getItem('refercode')}  url: ${location.origin}/${window.localStorage.getItem('refercode')}`}
+                                        >
+                                        <WhatsappIcon size={32} round={true} />       
+                                    </WhatsappShareButton></b>
+                                <a href={`sms://${window.localStorage.getItem('refercode')}`} >Send referral code by Message</a> 
+                                <br/>
+                                Share the referral code with friends and Earn Gift every Times!.<br/>
+                                More friends. More Earning!
+                            </p>      
+                
+                
+                        </div>        
+                
+                
                 
                     </div>
+                
                 </div>
-                                );
+                                            );
         }
     }
 

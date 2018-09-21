@@ -79,7 +79,7 @@ AppModel = {
                                         "notification": {
                                             "title": notificationData.title,
                                             "body": `Hi  ${tokendetail.name[0].toLocaleUpperCase() + (tokendetail.name.substring)(1)} , ${notificationData.messgae}`,
-                                            "icon": "https://playnwin.herokuapp.com/img/icons/logo.png",
+                                            "icon": "https://donotifyme.herokuapp.com/img/icons/Icon-57.png",
                                             "click_action": notificationData.actionUrl
                                              // "image": 'https://donotifyme.herokuapp.com/img/promoimages/' + message.selectedimg,
 
@@ -281,7 +281,7 @@ AppModel = {
                         "notification": {
                             "title": objdata.title,
                             "body": objdata.message,
-                            "icon": "https://playnwin.herokuapp.com/img/icons/logo.png",
+                            "icon": "https://donotifyme.herokuapp.com/img/icons/Icon-57.png",
                             "click_action": "https://www.google.com"
                         },
                         "to": token
