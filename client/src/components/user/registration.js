@@ -18,7 +18,7 @@ class Registration extends Component {
             projectname: '',
             map: [],
             showform: 'db',
-            navigation: "db",
+            navigation: "dn",
             floorno: 10,
             name: '',
             lid: '',
