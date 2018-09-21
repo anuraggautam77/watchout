@@ -49,13 +49,13 @@ class Usercount extends Component {
         return (
                 <div className="col-md-3">
                     <div className="panel panel-default">
-                        <div className="panel-heading"><b>User Count</b></div>
+                        <div className="panel-heading"><b>Registered user</b></div>
                         <div className="panel-body text-center">
-                            <b>Registered user <h1>{this.state.usercount}</h1> </b>
+                            <b> Count <h1>{this.state.usercount}</h1> </b>
                         </div>
                     </div>
                     <div className="panel panel-default">
-                        <div className="panel-heading"><b>Floor wise count</b></div>
+                        <div className="panel-heading"><b>Floor  wise</b></div>
                         <div className="panel-body">
                             <ul className="list-group">
                                 {  (() => this.renderList())() }
