@@ -2,7 +2,7 @@ importScripts('https://www.gstatic.com/firebasejs/3.5.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/3.5.2/firebase-messaging.js');
 
 
-const version = "0.1.1";
+const version = "0.1.21";
 const cacheName = `push-${version}`;
 self.addEventListener('install', e => {
     const timeStamp = Date.now();
