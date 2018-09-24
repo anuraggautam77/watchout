@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import  Detail from "../components/poll/detail";
 import '../style/css/detail.scss';
 import Header from './header/user';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class UserPollPage extends Component {
@@ -45,13 +45,31 @@ class UserPollPage extends Component {
                 <div className="application landing">
                     <Header/>
                     {
-                    (() => {
+                        (() => {
                             if (!this.state.already) {
                                 if (this.state.question.length > 0) {
                                         return (<Detail id={this.props.match.params.id} quedata={this.state.question} />)
                     }  
                     }else{
-                                        return (<h4>You have already Applied for this Question Earlier !! </h4>)
+
+                                        return (<div>
+                                            <div className="section section-breadcrumbs">
+                                                <div className="container">
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <h1> You have already Applied for this Question Earlier  !! 
+                                                            <br/> <br/>
+                                                             <Link className="btn " to={`/`}>  Back To Dashboard  </Link>
+                                                            </h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                        </div>
+                                                )
+
+
                     }
                 
                     })()

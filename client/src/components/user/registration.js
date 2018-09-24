@@ -28,7 +28,6 @@ class Registration extends Component {
             referralcode: '',
             referredby: referredby
         };
-        console.log(this.props);
     }
     generateSquareMatrix(num, init, max, diff, floorno) {
         var arr = [], row, col;
@@ -48,7 +47,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-            this.props.history.push('/mainpage');
+             this.props.history.push('/mainpage');
         }
 
     }
@@ -66,7 +65,6 @@ class Registration extends Component {
         if (this.refs.mobileno.value !== '' && this.refs.name.value !== '' && this.state.lid !== '' && this.state.projectname !== '') {
             var hashids = new Hashids(this.refs.name.value);
             var refcode = hashids.encode(1, 2, 3); // Z4UrtW
-            console.log(refcode)
             var userInfo = {
                 lid: this.state.lid,
                 projectname: this.state.projectname,
@@ -85,7 +83,6 @@ class Registration extends Component {
                 },
                 body: JSON.stringify(userInfo)
             }).then(res => res.json()).then(json => {
-
                 console.log(json)
                 window.localStorage.setItem('subscriber', json.data[0].id);
                 window.localStorage.setItem('mno', this.refs.mobileno.value);
@@ -93,7 +90,7 @@ class Registration extends Component {
                 this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
             });
         } else {
-            alert("Fill all the form !!!");
+            alert("Please fill all mandatory Fields !!!");
         }
     }
     checkstatus(id) {
@@ -119,7 +116,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -147,23 +144,24 @@ class Registration extends Component {
                         </div>
                     </div>
                 
-                    <div className="section">
+                    <div className="section galaxy-container">
                         <div className="container">
                             <div className="row">
                                 <div className="col-sm-7">
                                     <div className={ `basic-login ${this.state.showform}`}>
                                         <form role="form">
                                             <div className="form-group">
-                                                <label><i className="icon-user"></i> <b>Nick Name</b></label>
-                                                <input  type="text"  name="first_name" id="first_name" className="form-control input-sm" placeholder="Nick Name" required="required" ref="name"  />
+                                                <label><i className="icon-user"></i> <b>Nick Name<sup>*</sup></b></label>
+                                                <input minLength="3" maxLength="20"  type="text"  name="first_name" id="first_name" className="form-control input-sm" placeholder="Nick Name" required="required" ref="name"  />
                                             </div>
                                             <div className="form-group">
-                                                <label><i className="icon-phone"></i> <b>Mobile Number</b></label>
-                                                <input  id="mobileno"  name="Mobile No." ref="mobileno"  placeholder="Mobile No." className="form-control input-sm" required="required"  type="number"  />
+                                                <label><i className="icon-phone"></i> <b>Mobile Number<sup>*</sup></b></label>
+                                                <input  id="mobileno"  name="Mobile No." ref="mobileno"  placeholder="10 Digit Mobile No." 
+                                                        className="form-control input-sm" required="required"  type="text" size="20" minLength="9" maxLength="10"/>
                                             </div>
                                             <div className="form-group">
                                                 <label><i className="glyphicon glyphicon-gift"></i> <b>Refferal Code</b></label>
-                                                <input  name="referredby"  ref="referredby" placeholder="Use refferal Code if any !!" className="form-control input-sm"
+                                                <input  name="referredby"  ref="referredby" autoComplete="" size="20" minLength="0" maxLength="6"  placeholder="Use refferal Code if any !!" className="form-control input-sm"
                                                         onChange={
                     (e) => {
                         this.setState({...this.state, referredby: e.target.value })}}
@@ -171,7 +169,7 @@ class Registration extends Component {
                                                         />
                                             </div>
                                             <div className="form-group">
-                                                <label><i className="icon-building"></i> <b>Select Floor</b></label>
+                                                <label><i className="icon-building"></i> <b>Select Floor <sup>*</sup></b></label>
                                                 <select   onChange={
                             (event) => {
                                 if (event.target.value !== '') {
@@ -194,7 +192,7 @@ class Registration extends Component {
                 
                                             <div className={
                                                 `form-group ${this.state.showgrid}`}>
-                                                <label><i className="icon-building"></i> <b>Select Your Area </b></label>
+                                                <label><i className="icon-building"></i> <b>Select Your Area <sup>*</sup> </b></label>
                                                 <div className={ `row`}>
                 
                                                     <div className="form-group canvas-container col-md-12">
@@ -210,7 +208,7 @@ class Registration extends Component {
                                             <div className="form-group">
                                                 <button type="button"  onClick={ () => {
                                                     this.registerUser();
-                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
@@ -256,13 +254,10 @@ class Registration extends Component {
                                                                         url={`Referral Code: ${window.localStorage.getItem('referralcode')}  url: ${location.origin}/home/${window.localStorage.getItem('referralcode')}`}
                                                                         > <WhatsappIcon size={32} round={true} />
                                                                     </WhatsappShareButton>
-                                                                    <a href={`sms://${window.localStorage.getItem('referralcode')}`} >
-                                                                        <span className='glyphicon glyphicon-envelope icon-size'></span>
-                                                                    </a>
-                
-                                                                    <a href={`mailto:?subjec=Referral%20Code;body==url:${location.origin}/home/${window.localStorage.getItem('referralcode')}`}>Send mail</a>
-                
-                
+                                                                    <span>
+                                                                        <a href={`mailto:?subject=Referral Code ${window.localStorage.getItem('referralcode')}&body= url :${location.origin}/home/${window.localStorage.getItem('referralcode')}`}> <span className='glyphicon glyphicon-envelope icon-size'></span></a>
+                                                                        <a href={`sms://?&body=${window.localStorage.getItem('referralcode')}`} >SMS</a>
+                                                                    </span> 
                                                                 </div> 
                                                             </div>
                                                         </div>
@@ -275,7 +270,7 @@ class Registration extends Component {
                 
                                 </div>
                                 <div className="col-sm-4 col-sm-offset-1 social-login">
-                                    <p>dummy text</p>
+                                    <p> </p>
                                     <div className="social-login-buttons">
                 
                                     </div>

@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
-  output: {
+     output: {
     filename: 'js/[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
   },

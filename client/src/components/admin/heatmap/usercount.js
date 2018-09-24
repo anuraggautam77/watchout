@@ -42,8 +42,7 @@ class Usercount extends Component {
         return template;
     }
     render() {
-
-        console.log(this.state.mostDenFloor);
+ 
         return (
                 <div>
                     <div className="col-md-3">

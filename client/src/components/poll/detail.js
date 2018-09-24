@@ -5,7 +5,7 @@ import Chart from "chart.js";
 class Detail extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+       
         this.state = {
             detail: props.quedata,
             submitPoll: false,
@@ -24,7 +24,7 @@ class Detail extends Component {
 
     }
     showGraph(data, label) {
-        console.log(data, label)
+       
         var canvas = document.getElementById("chart");
         var ctx = canvas.getContext("2d");
         var myChart = new Chart(ctx, {
@@ -71,8 +71,7 @@ class Detail extends Component {
 
     }
     selectedOptionHandler(event) {
-        console.log(event.target.checked);
-        console.log(event.target.value);
+        
         this.setState({
             ...this.state,
             slectedOption: event.target.value
@@ -141,21 +140,25 @@ class Detail extends Component {
 
 
             return (
+                    <div>
+                <div className="section section-breadcrumbs">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-6">
+                                <h1> <span className="text-uppercase">{this.state.detail[0].type}</span> : {this.state.detail[0].que}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                    
               <div className="detailPage">
                  <div className="section">
                  <div className="container">       
-                    <div className="row">
-                           <div className={`col-sm-12 col-xs-12`}>
-                             <h3 className="form-signin-heading">
-                                  {this.state.detail[0].type} : {this.state.detail[0].que}
-                            </h3>
-                         </div>
+                    <div className="row" style={ { "borderRadius":"6px", "paddingTop": "17px", backgroundImage: "url(/img/bg-dash.png)" } } >
                           <div className={`col-sm-6 col-xs-12 ${this.state.questionshow}`}>
-                             <hr className="colorgraph" />
-                                <br />
                                 <div className="form-group">
                                     {optionList}
-                                    <br />
+                                    <br/>
                                     { (()=>{
                                        if(!this.state.disabled) {
                                           return (<button  className="btn btn-lg btn-primary btn-block"  name="Submit" 
@@ -179,7 +182,7 @@ class Detail extends Component {
                     </div>
                     </div>
                )  
-                                           }else{
+                    }else{
                 return(
                    <div className={`col-sm-6 col-xs-12 `}>
                      <div className="alert alert-danger" role="alert">
@@ -192,7 +195,7 @@ class Detail extends Component {
                                      })()
                                }
                             
-                            <div className="col-sm-6 col-xs-12">
+                            <div className="col-sm-6 col-xs-12" >
                                     <div className="chart-container">
                                         <canvas id="chart"/>
                                     </div>
@@ -201,6 +204,7 @@ class Detail extends Component {
                          </div>
                     </div>
                     </div>
+                    </div>  
                         );
         }
     }

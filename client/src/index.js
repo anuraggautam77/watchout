@@ -32,6 +32,7 @@ if ('serviceWorker' in navigator) {
         window.localStorage.setItem('deviceToken', token);
     }).catch(function (err) {
         console.log("No Permission!! ", err);
+        alert("You have blocked notifications. Please unblock them to get our notifications So that you can win many Prizes!!")
     });
 
     messaging.onMessage(function (payload) {

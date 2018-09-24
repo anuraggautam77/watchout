@@ -261,9 +261,7 @@ $sidebar-background-orange:      #ff8f5e !default;
 $sidebar-font-orange:            #772510 !default;
 $sidebar-subtitle-orange:        #e95e37 !default;
 
-
-
-@import url('https://fonts.googleapis.com/css?family=Arima+Madurai');
+ 
 body {
     padding-top: 0;
     padding-bottom: 0;
@@ -705,9 +703,7 @@ a{
         padding-top: 14px;
         .icon-size{
             font-size: 25px;
-            float: left;
-            padding-left: 10px;
-            padding-top: 4px;
+           
         }
     }   
 }
@@ -741,33 +737,46 @@ a{
         background-color: rgb(235,235,228);
 
     }
+    //["brown-tone", "slightly-blue", "moderate-orange", "bright-orange", "vivid-orange"];
+    /*
+        '0.00': 'rgb(255,0,255)',
+         '0.25': 'rgb(0,0,255)',
+         '0.50': 'rgb(0,255,0)',
+         '0.75': 'rgb(255,255,0)',
+         '1.00': 'rgb(255,0,0)*/    
 
     .brown-tone{
-        background-color:#85671b;
+      //  background-color:#85671b;
+       background-color:#bd0026;
         color:#fff;
         border-color: #ffc533;
     }
 
     .slightly-blue{
-        background-color:#bc9226; 
+      //  background-color:#bc9226; 
+       background-color:#f03b20;
         color:#fff;
         border-color: #ffc533;
     }
     .moderate-orange{
-        background-color:#d8b868;
+        //background-color:#d8b868;
+         background-color:#fd8d3c;
         color:#fff;
         border-color: #ffc533;
     }
     .bright-orange{
-        background-color:#deab2c;
+       // background-color:#deab2c;
+        background-color:#fecc5c;
         color:#fff;
         border-color: #ffc533;
     }
 
     .vivid-orange{
-        background-color:#ffc533;
+        //background-color:#ffc533;
+         background-color:#ffffb2;
         border-color: #d8b868;
     }
+    
     .cross-disable{
         cursor: not-allowed;
     }
@@ -799,29 +808,34 @@ a{
         }
     }
     .brown-tone{
-        background-color:#85671b;
+      //  background-color:#85671b;
+       background-color:#bd0026;
         color:#fff;
         border-color: #ffc533;
     }
 
     .slightly-blue{
-        background-color:#bc9226; 
+      //  background-color:#bc9226; 
+       background-color:#f03b20;
         color:#fff;
         border-color: #ffc533;
     }
     .moderate-orange{
-        background-color:#d8b868;
+        //background-color:#d8b868;
+         background-color:#fd8d3c;
         color:#fff;
         border-color: #ffc533;
     }
     .bright-orange{
-        background-color:#deab2c;
+       // background-color:#deab2c;
+        background-color:#fecc5c;
         color:#fff;
         border-color: #ffc533;
     }
 
     .vivid-orange{
-        background-color:#ffc533;
+        //background-color:#ffc533;
+         background-color:#ffffb2;
         border-color: #d8b868;
     }
     .cross-disable{

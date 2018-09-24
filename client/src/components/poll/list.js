@@ -59,32 +59,43 @@ class PollList extends Component {
                     <h2 className="pricing-plan-title">{index + 1}) Question</h2>
                     <div className="content">
                         <h3 className="title">{obj.detail.qus}</h3> 
-                        <Link className="btn" to={`question/${obj.id}/${obj.type.toLocaleLowerCase()}`}> 
+                        <Link className="btn" to={`/question/${obj.id}/${obj.type.toLocaleLowerCase()}`}> 
                         See {obj.type}  </Link>
                     </div>
-                    
+            
                 </div>
             </div>
                     );
         });
         return (
-                <div className="listing">
-                    <div className="section">
+                <div>
+                
+                    <div className="section section-breadcrumbs">
                         <div className="container">
                             <div className="row">
-                                <Masonry
-                                    className={'my-gallery-class'} 
-                                    options={masonryOptions}  
-                                    updateOnEachImageLoad={false} 
-                                    imagesLoadedOptions={imagesLoadedOptions} 
-                                    >
-                                    {childElements}           
-                                </Masonry>
-                
+                                <div className="col-md-6">
+                                  <h1>Question Listing</h1>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className="listing">
+                        <div className="section">
+                            <div className="container">
+                                <div className="row">
+                                    <Masonry
+                                        className={'my-gallery-class'} 
+                                        options={masonryOptions}  
+                                        updateOnEachImageLoad={false} 
+                                        imagesLoadedOptions={imagesLoadedOptions} 
+                                        >
+                                        {childElements}           
+                                    </Masonry>
                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 );
     }

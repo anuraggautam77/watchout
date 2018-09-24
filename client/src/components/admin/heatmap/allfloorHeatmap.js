@@ -34,7 +34,7 @@ class FullHeatMap extends Component {
 
     }
     generateSquareMatrix(num, init, groupdata) {
-        console.log(groupdata);
+
         var arr = [], row, col;
         var i = init;
 
@@ -71,8 +71,6 @@ class FullHeatMap extends Component {
         }
     }
     gridClickHandler(e, colIdx) {
-        console.log(e.currentTarget);
-        console.log(colIdx);
     }
     drawgrid() {
         let blockid = 1;
@@ -89,7 +87,7 @@ class FullHeatMap extends Component {
                                                     className={this.checkstatus(rowIdx, colIdx, blockid, col) } 
                                                     onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 }}
                                                     > 
                                                     <div>
                                                         {
@@ -129,7 +127,7 @@ class FullHeatMap extends Component {
             <span className="badge" >{option.userCount}</span> 
             <button onClick={() => {
                                 this.props.floorwise(option.floorno);
-                                                                                                                            }} className="btn btn-success btn-xs">{option.floorno} <sup>th</sup> Floor Detail</button> </li>);
+                                                                                                                                    }} className="btn btn-success btn-xs">{option.floorno} <sup>th</sup> Floor Detail</button> </li>);
         });
         return template;
     }
@@ -153,7 +151,7 @@ class FullHeatMap extends Component {
                                     </div>
                                 </div>
                                 <div  className="col-md-9" >
-                                     <div className="col-md-8">
+                                    <div className="col-md-8">
                                         <div className="panel panel-default">
                                             <div className="panel-body">
                                                 <div className="chart-container">

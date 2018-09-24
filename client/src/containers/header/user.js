@@ -18,11 +18,11 @@ class  Header extends Component {
                     <div className="container">
                         <nav id="mainmenu" className="mainmenu">
                             <ul>
-                                <li className="logo-wrapper"><h1>Play & Win</h1></li>
-                                <li>
-                                   
-                                </li>
-                
+                             <li className="logo-wrapper">
+                                <Link to="/" className="dropdown-toggle" data-toggle="dropdown">
+                                     <img src="/img/web-logo.png" alt="AGARTHA"/>
+                                </Link>
+                             </li>
                             </ul>
                         </nav>
                     </div>
