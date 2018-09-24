@@ -1,14 +1,11 @@
-/* global google, fetch */
 
 import React, { Component } from 'react';
-import '../style/css/list.scss';
+import '../style/css/landing.scss';
 import Header from './header/user';
-import  PollList from "../components/poll/list";
+import SpotReg from '../components/user/spotreg';
+ 
 
-
-const imagesLoadedOptions = {background: '.my-bg-image-el'}
-
-class MainPage extends Component {
+class FootFall extends Component {
     constructor(props) {
         super(props);
     }
@@ -19,13 +16,15 @@ class MainPage extends Component {
 
     }
     render() {
-        return (
+        return ( 
+                
                 <div className="application landing">
                     <Header/>
-                    <PollList/>
-                </div>
+                    <SpotReg/>
+                    </div>
+                
                 );
+                }
     }
-}
 
-export default MainPage;
+    export default FootFall;

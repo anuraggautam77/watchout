@@ -32,6 +32,10 @@ export default class ImageMapper extends Component {
     fillreactonload() {
 
         this.props.map.areas.map((area, index) => {
+
+            this.hoverLoadRemove(area, index);
+
+
             let [left, top, right, bot] = area.coords;
 
             if (this.props.hasOwnProperty('admin')) {
@@ -41,6 +45,11 @@ export default class ImageMapper extends Component {
             this.ctx.strokeRect(left, top, right - left, bot - top);
             this.ctx.fillRect(left, top, right - left, bot - top);
         });
+
+    }
+    hoverLoadRemove(area, index) {
+        console.log(area);
+        this.ctx.clearRect(0, 0, 0, 0);
 
     }
     drawrect(coord) {
@@ -129,7 +138,7 @@ export default class ImageMapper extends Component {
                          onLoad={() => {
                                     this.initCanvas();
                                     this.fillreactonload();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
                 
                          onClick={this.props.onImageClick} />
                     <canvas ref={node => this.canvas = node} style={this.styles.canvas} />

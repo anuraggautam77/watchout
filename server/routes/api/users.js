@@ -22,6 +22,7 @@ const SERVICE_CONST = {
     ADMIN_GET_QUESTION: "admingetque",
     SUBMIT_QUESTION: "submitquestion",
     USER_REGISTRATION: 'userregistration',
+    SPOT_REGISTRATION: 'spotreg',
     NOTIFY_QUIZ_WINNER: 'notifyquiz',
     ALL_USER_COUNT: 'alluserdetail',
     FLOOR_WISE_COUNT: 'floorwsie',
@@ -86,9 +87,9 @@ module.exports = (apiRoutes) => {
                 bcrypt.hash(req.body.password, salt, null, function (err, hash) {
                     req.body.password = hash;
                     console.log(hash)
-                     AppModel.adminRegis(req.body, function (result) {
-                     res.json({data: result});
-                     }); 
+                    AppModel.adminRegis(req.body, function (result) {
+                        res.json({data: result});
+                    });
                 });
             });
 
@@ -118,18 +119,16 @@ module.exports = (apiRoutes) => {
                         });
 
                     } else {
+
                         res.status(401).send({success: false, msg: 'Incorrect Password.'});
                     }
                 });
 
             } else {
+
                 res.status(401).send({success: false, msg: 'Authentication failed.'});
             }
-
-
         });
-
-
     });
 
 
@@ -141,7 +140,11 @@ module.exports = (apiRoutes) => {
         });
     });
 
-
+    apiRoutes.post(`/${SERVICE_CONST.SPOT_REGISTRATION}`, (req, res) => {
+        AppModel.spotRegistration(req.body, function (result) {
+            res.json({data: result});
+        });
+    });
 
     apiRoutes.post(`/${SERVICE_CONST.NOTIFY_QUIZ_WINNER}`, (req, res) => {
         AppModel.notifyToUser(req.body, function (result) {
@@ -280,14 +283,13 @@ module.exports = (apiRoutes) => {
     });
 
 
-    apiRoutes.get(`/${SERVICE_CONST.ALL_USER_COUNT}`, (req, res) => {
-        AppModel.allusercount(req.body, (results) => {
-            res.json({status: "success", result: results});
-        });
-    });
+    /* apiRoutes.get(`/${SERVICE_CONST.ALL_USER_COUNT}`, (req, res) => {
+     AppModel.allusercount(req.body, (results) => {
+     res.json({status: "success", result: results});
+     });
+     });*/
 
     apiRoutes.get(`/${SERVICE_CONST.FLOOR_WISE_COUNT}/:floorid`, (req, res) => {
-
         AppModel.floorwiseuser(req.params, (results) => {
             res.json({status: "success", result: results});
         });
@@ -295,8 +297,50 @@ module.exports = (apiRoutes) => {
     });
 
 
+    apiRoutes.get(`/${SERVICE_CONST.ALL_USER_COUNT}`, (req, res) => {
+
+        var alluserCount = new Promise(function (resolve, reject) {
+            AppModel.allusercount(req.body, (results) => {
+                resolve(results);
+            });
+        });
+
+        var spotCountData = new Promise(function (resolve, reject) {
+            AppModel.spotcount(req.body, (results) => {
+                resolve(results);
+            });
+        });
+
+        var refferalCode = new Promise(function (resolve, reject) {
+            AppModel.getrefferalcode(req.body, (results) => {
+                resolve(results);
+            });
+        });
+
+        var mostDenLoc = new Promise(function (resolve, reject) {
+            AppModel.mostdenLoc(req.body, (results) => {
+                resolve(results);
+            });
+        });
+
+        var mostDenFloor = new Promise(function (resolve, reject) {
+            AppModel.mostdenFloor(req.body, (results) => {
+                resolve(results);
+            });
+        });
 
 
+        Promise.all([alluserCount, spotCountData, refferalCode, mostDenLoc, mostDenFloor]).then(function (values) {
+            res.json({status: "success",
+                result: values[0],
+                spotcount: values[1],
+                refferal: values[2],
+                mostDenLoc: values[3],
+                mostDenFloor: values[4]
+            });
+
+        });
+    });
 
 
 };

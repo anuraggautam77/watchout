@@ -125,33 +125,33 @@ class Detail extends Component {
                 if (obj !== "") {
                     k++;
                     
-                 return (
-                         <div className="funkyradio"  key={i} >
-    <div className="funkyradio-success">
-                        <input type="radio" 
-                        disabled={ this.state.disabled}
-
-                        name="radio" 
-                        onClick={(event) => {  this.selectedOptionHandler(event); }} 
-                        id={`radio${i}`} 
-                        value={`op${k}`}
-                        />
-                        <label  htmlFor={`radio${i}`} >
+                 return ( <div className="funkyradio"  key={i} >
+                            <div className="funkyradio-success">
+                             <input type="radio"  disabled={ this.state.disabled}
+                                name="radio"  onClick={(event) => {  this.selectedOptionHandler(event); }} 
+                                 id={`radio${i}`} 
+                                     value={`op${k}`}
+                                     />
+                            <label  htmlFor={`radio${i}`} >
                             <strong>{obj}</strong></label>
-    </div>
-</div>);
+                          </div>
+                        </div>);
                 }
          });
 
 
             return (
-                    <div className="detailPage">
-                        <div className="row">
-                            <h3 className="form-signin-heading">
-                                {this.state.detail[0].que}
+              <div className="detailPage">
+                 <div className="section">
+                 <div className="container">       
+                    <div className="row">
+                           <div className={`col-sm-12 col-xs-12`}>
+                             <h3 className="form-signin-heading">
+                                  {this.state.detail[0].type} : {this.state.detail[0].que}
                             </h3>
-                            <div className={`col-sm-6 col-xs-12 ${this.state.questionshow}`}>
-                                <hr className="colorgraph" />
+                         </div>
+                          <div className={`col-sm-6 col-xs-12 ${this.state.questionshow}`}>
+                             <hr className="colorgraph" />
                                 <br />
                                 <div className="form-group">
                                     {optionList}
@@ -166,24 +166,27 @@ class Detail extends Component {
                                      })()
                                      }
                                 </div>
-                    
-                            </div>
+                       </div>
                             
-                             { (()=>{
-                                 
-                                 console.log(this.state)
-                                 
-                                       if(this.state.questionshow==="dn") {
-                       if(this.state.isCorrect){
-        return(
-                <div className="alert alert-success" role="alert">
-                <strong> Congratulations!!!</strong> You made it .
-             </div>)  
+                            
+              { (()=>{
+          if(this.state.questionshow==="dn") {
+                    if(this.state.isCorrect){
+            return(
+                    <div className={`col-sm-6 col-xs-12 `}>
+                     <div className="alert alert-success" role="alert">
+                            <strong> Congratulations!!!</strong> You made it .
+                    </div>
+                    </div>
+               )  
                                            }else{
-                                      return(
-                <div className="alert alert-danger" role="alert">
-                 <strong> Sorry !!!   </strong>  Better Luck next time.
-             </div>)        
+                return(
+                   <div className={`col-sm-6 col-xs-12 `}>
+                     <div className="alert alert-danger" role="alert">
+                             <strong> Sorry !!!  </strong>  Better Luck next time.
+                    </div>
+                    </div>                           
+                 )        
                                         }
                                        }
                                      })()
@@ -191,10 +194,12 @@ class Detail extends Component {
                             
                             <div className="col-sm-6 col-xs-12">
                                     <div className="chart-container">
-                                        <canvas id="chart" />
+                                        <canvas id="chart"/>
                                     </div>
                             </div>
                         </div>
+                         </div>
+                    </div>
                     </div>
                         );
         }

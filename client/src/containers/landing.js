@@ -1,8 +1,10 @@
 
 import React, { Component } from 'react';
 import '../style/css/landing.scss';
+
+import Header from './header/user';
 import Registration from '../components/user/registration';
- 
+
 
 class Landing extends Component {
     constructor(props) {
@@ -15,8 +17,12 @@ class Landing extends Component {
 
     }
     render() {
-        return ( <div className="signup"> <div className="container"> <Registration/></div> </div> );
-                }
+        return (
+                <div className="application landing">
+                    <Header/>
+                    <Registration/>
+                </div>);
     }
+}
 
-    export default Landing;
+export default Landing;

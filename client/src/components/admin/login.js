@@ -28,12 +28,14 @@ class Login extends Component {
             body: JSON.stringify({username, password})
 
         }).then(res => res.json()).then(json => {
-            localStorage.setItem('jwtToken', json.token);
-            localStorage.setItem('userid', json.userid);
-            this.props.history.push("/heatmap");
+            if (json.success) {
+                localStorage.setItem('jwtToken', json.token);
+                localStorage.setItem('userid', json.userid);
+                this.props.history.push("/heatmap");
+            }else{
+                this.setState({error:json.msg});
+            }
         });
-
-
     }
     handleUsernameChange(e) {
         this.setState({username: e.target.value});
@@ -42,9 +44,6 @@ class Login extends Component {
         this.setState({password: e.target.value});
     }
     render() {
-
-
-
         return (
                 <div className="adminlogin">
                     <div id="login">
@@ -54,6 +53,7 @@ class Login extends Component {
                                     <div id="login-box" className="col-md-12">
                                         <form id="login-form" className="form">
                                             <h3 className="text-center text-info">Administrator Log-in</h3>
+                                            {this.state.error}
                                             <div className="form-group">
                                                 <label className="text-info">Username:</label><br/>
                                                 <input type="text"

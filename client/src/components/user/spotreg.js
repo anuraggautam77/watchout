@@ -1,18 +1,13 @@
 import React, { Component }
 from "react";
+
 import { withRouter } from "react-router-dom";
-import Hashids from "hashids";
-import { WhatsappShareButton, WhatsappIcon } from 'react-share';
-class Registration extends Component {
+
+class SpotReg extends Component {
     constructor(props) {
         super(props);
-        var referredby = '';
-        console.log(">>>>>", this.props)
-        if (this.props.match.hasOwnProperty('params')) {
-            if (this.props.match.params.id) {
-                referredby = this.props.match.params.id;
-            }
-        }
+         
+ 
 
         this.state = {
             projectname: '',
@@ -23,12 +18,12 @@ class Registration extends Component {
             name: '',
             selectedBlock: '',
             lid: '',
-            deviceid: window.localStorage.getItem('deviceToken'),
-            matrix: [],
-            referralcode: '',
-            referredby: referredby
+            deviceid: "",
+            matrix: []
+           
         };
-        console.log(this.props);
+
+
     }
     generateSquareMatrix(num, init, max, diff, floorno) {
         var arr = [], row, col;
@@ -40,21 +35,17 @@ class Registration extends Component {
                 arr[row][col] = `${floorno}F-${i} to ${floorno}F-${j}`
                 i = j + 1;
                 j = i + diff;
+
             }
         }
         return arr;
     }
     componentWillMount() {
-        var devicetoken = window.localStorage.getItem('deviceToken');
-        var subscriber = window.localStorage.getItem('subscriber');
-        if (subscriber !== null && devicetoken !== null) {
-            this.props.history.push('/mainpage');
-        }
 
     }
     componentDidMount() {
 
-        this.refs.referredby.value = this.state.referredby;
+      
     }
     gridClickHandler(e) {
         this.setState({...this.state,
@@ -64,20 +55,17 @@ class Registration extends Component {
     }
     registerUser() {
         if (this.refs.mobileno.value !== '' && this.refs.name.value !== '' && this.state.lid !== '' && this.state.projectname !== '') {
-            var hashids = new Hashids(this.refs.name.value);
-            var refcode = hashids.encode(1, 2, 3); // Z4UrtW
-            console.log(refcode)
+
             var userInfo = {
                 lid: this.state.lid,
                 projectname: this.state.projectname,
-                deviceid: this.state.deviceid,
+                deviceid: "-",
                 floorno: this.state.floorno,
                 mobileno: this.refs.mobileno.value,
-                name: this.refs.name.value,
-                referralcode: refcode,
-                referredby: this.refs.referredby.value
+                name: this.refs.name.value
             };
-            fetch('/api/userregistration', {
+
+            fetch('/api/spotreg', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -85,11 +73,6 @@ class Registration extends Component {
                 },
                 body: JSON.stringify(userInfo)
             }).then(res => res.json()).then(json => {
-
-                console.log(json)
-                window.localStorage.setItem('subscriber', json.data[0].id);
-                window.localStorage.setItem('mno', this.refs.mobileno.value);
-                window.localStorage.setItem('referralcode', refcode);
                 this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
             });
         } else {
@@ -119,7 +102,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -141,7 +124,7 @@ class Registration extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <h1>Register with Play n Win</h1>
+                                    <h1>Footfall Registration</h1>
                                 </div>
                             </div>
                         </div>
@@ -161,15 +144,7 @@ class Registration extends Component {
                                                 <label><i className="icon-phone"></i> <b>Mobile Number</b></label>
                                                 <input  id="mobileno"  name="Mobile No." ref="mobileno"  placeholder="Mobile No." className="form-control input-sm" required="required"  type="number"  />
                                             </div>
-                                            <div className="form-group">
-                                                <label><i className="glyphicon glyphicon-gift"></i> <b>Refferal Code</b></label>
-                                                <input  name="referredby"  ref="referredby" placeholder="Use refferal Code if any !!" className="form-control input-sm"
-                                                        onChange={
-                    (e) => {
-                        this.setState({...this.state, referredby: e.target.value })}}
-                                                        type="text"
-                                                        />
-                                            </div>
+                                             
                                             <div className="form-group">
                                                 <label><i className="icon-building"></i> <b>Select Floor</b></label>
                                                 <select   onChange={
@@ -192,11 +167,10 @@ class Registration extends Component {
                                                 </select>
                                             </div>
                 
-                                            <div className={
-                                                `form-group ${this.state.showgrid}`}>
-                                                <label><i className="icon-building"></i> <b>Select Your Area </b></label>
-                                                <div className={ `row`}>
-                
+                                            <div className="form-group">
+                                                <div className={
+                                                `row ${this.state.showgrid}`}>
+                                                    <p> {this.state.projectname} </p>
                                                     <div className="form-group canvas-container col-md-12">
                                                         <div className="recall-grid">
                                                             {this.drawgrid()}
@@ -210,7 +184,7 @@ class Registration extends Component {
                                             <div className="form-group">
                                                 <button type="button"  onClick={ () => {
                                                     this.registerUser();
-                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
@@ -219,57 +193,21 @@ class Registration extends Component {
                 
                 
                                     <div className={`row ${this.state.navigation}`}>
-                                        <div className='col-sm-12 col-md-6'>
+                                        <div className='col-sm-12 col-md-12'>
                                             <div className="well panel-heading service-wrapper alignheading">
                                                 <div className="widget-tile">
                                                     <section>
                                                         <h3> Thank you for registration</h3>
                                                         <div className="progress xs green"></div>
                                                         <div className="thanku-template">
-                                                            <h2>  Hi {this.state.name}!</h2>
                                                             <h3> Thanks for registration</h3>
-                                                            <div className="thanku-details">
-                                                                <p>Don't miss the notifications to increase your chances of winning prizes.</p> 
-                                                            </div>
                                                         </div>
                 
                                                     </section>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-sm-12 col-md-6'>
-                                            <div className="well panel-heading service-wrapper alignheading">
-                                                <div className="widget-tile">
-                                                    <section>
-                                                        <h3> Refferal Code</h3>
-                                                        <div className="progress xs green"></div>
-                                                        <div className="row">
-                                                            <div className="thanku-actions text-center">
-                                                                <p> Forward or share your refferal code with your friends to get chance to win Prize.
-                                                                </p>
-                
-                                                                <div className='col-sm-12 col-md-6'>  
-                                                                    <div className="alert alert-success code "> {window.localStorage.getItem('referralcode')} </div>
-                                                                </div>
-                                                                <div className='col-sm-12 col-md-6 top'> 
-                                                                    <WhatsappShareButton 
-                                                                        url={`Referral Code: ${window.localStorage.getItem('referralcode')}  url: ${location.origin}/home/${window.localStorage.getItem('referralcode')}`}
-                                                                        > <WhatsappIcon size={32} round={true} />
-                                                                    </WhatsappShareButton>
-                                                                    <a href={`sms://${window.localStorage.getItem('referralcode')}`} >
-                                                                        <span className='glyphicon glyphicon-envelope icon-size'></span>
-                                                                    </a>
-                
-                                                                    <a href={`mailto:?subjec=Referral%20Code;body==url:${location.origin}/home/${window.localStorage.getItem('referralcode')}`}>Send mail</a>
-                
-                
-                                                                </div> 
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </div>
-                                            </div>
-                                        </div>
+                                         
                                     </div>
                 
                 
@@ -285,9 +223,8 @@ class Registration extends Component {
                     </div>
                 
                 </div>
-
                                                 );
                 }
             }
 
-            export default withRouter(Registration);
+            export default withRouter(SpotReg);

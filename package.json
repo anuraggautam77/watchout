@@ -16,6 +16,7 @@
   "dependencies": {
     "async": "^2.6.1",
     "bcrypt-nodejs": "0.0.3",
+    "certbot": "^1.0.0",
     "chart.js": "^2.7.2",
     "cors": "^2.8.4",
     "cryptr": "^3.0.0",

@@ -5,12 +5,48 @@ const async = require('async');
 const isDebugLocal = false;
 AppModel = {
     userRegistration: function (objdata, callback) {
+        console.log(objdata);
+        var query = ``;
+        if (objdata.referredby == '') {
+            query = `merge (floor:Floor{fno:${objdata.floorno}})
+         merge (location:Location{lid:"${objdata.lid}", projectName:"${objdata.projectname}"})
+         merge (user:User{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
+         merge (referral:Referral{code:"${objdata.referralcode}"})
+         merge (referral)-[:REFERRAL_CODE]-(user)
+         merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) return ID(user) as id`;
+        } else {
+            query = `merge (floor:Floor{fno:${objdata.floorno}})
+         merge (location:Location{lid:"${objdata.lid}", projectName:"${objdata.projectname}"})
+         merge (user:User{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
+         merge (referral:Referral{code:"${objdata.referralcode}"})
+         merge (referral)-[:REFERRAL_CODE]-(user)
+         merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) with user as u
+         match (r:Referral{code:"${objdata.referredby}"})
+         merge (r)-[:REFERRED_BY]-(u) return ID(u) as id`;
+        }
+
+        /*
+         
+         var query = `merge (floor:Floor{fno:${objdata.floorno}})
+         merge (location:Location{lid:"${objdata.lid}", projectName:"${objdata.projectname}"})
+         merge (user:User{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
+         merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) return ID(user) as id`; 
+         */
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
 
 
-        var query = `merge (floor:Floor{fno:${objdata.floorno}})
-             merge (location:Location{lid:"${objdata.lid}", projectName:"${objdata.projectname}"})
-             merge (user:User{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
-            merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) return ID(user) as id`;
+    },
+    spotRegistration: function (objdata, callback) {
+
+        var query = `merge (floor:sFloor{fno:${objdata.floorno}})
+         merge (location:sLocation{lid:"${objdata.lid}", projectName:"${objdata.projectname}"})
+         merge (user:sUser{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
+         merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) return ID(user) as id`;
+
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -36,12 +72,10 @@ AppModel = {
     },
     noticationData(objdata, result, type) {
 
-        console.log(">>>>>>>>>>>>");
-        console.log(result)
-        if(type==="poll"){
-            node="poll";
-        }else{
-             node="question";
+        if (type === "poll") {
+            node = "poll";
+        } else {
+            node = "question";
         }
 
 
@@ -81,7 +115,7 @@ AppModel = {
                                             "body": `Hi  ${tokendetail.name[0].toLocaleUpperCase() + (tokendetail.name.substring)(1)} , ${notificationData.messgae}`,
                                             "icon": "https://donotifyme.herokuapp.com/img/icons/Icon-57.png",
                                             "click_action": notificationData.actionUrl
-                                             // "image": 'https://donotifyme.herokuapp.com/img/promoimages/' + message.selectedimg,
+                                                    // "image": 'https://donotifyme.herokuapp.com/img/promoimages/' + message.selectedimg,
 
                                         },
                                         "to": token
@@ -307,6 +341,15 @@ AppModel = {
             callback(results);
         });
     },
+    spotcount: function (objdata, callback) {
+        var query = `optional match (u:sUser)-[]-(l:sLocation)-[]-(f:sFloor) return f.fno as floorno, count(distinct u) as userCount order by userCount desc`;
+        console.log(query)
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+    },
     floorwiseuser: function (objdata, callback) {
         var query = ` match (u:User)-[]-(l:Location)-[]-(f:Floor{fno:${objdata.floorid}}) return count(distinct u) as userCount , l.projectName as projName, l.lid as proid`;
         console.log(query);
@@ -317,8 +360,6 @@ AppModel = {
         });
     },
     adminRegis: function (objdata, callback) {
-
-
         var query = `MERGE (n:user { username: "${objdata.username}", password: "${objdata.password}" })`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
@@ -336,9 +377,37 @@ AppModel = {
             callback(results);
         });
 
+    },
+    getrefferalcode: function (objdata, callback) {
+        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 2`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+    },
+    
+    
+    mostdenFloor:function(objdata, callback){
+         var query = `match (u:User)-[]-(l:Location)-[]-(f:Floor) return f.fno as fn, count(DISTINCT u) as userCount order by userCount desc limit 1`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+        
+    },
+    
+    
+     mostdenLoc:function(objdata, callback){
+         var query = `match (u:User)-[]-(l:Location) return l.projectName as blockname,l.lid as loc, count(DISTINCT u) as userCount order by userCount desc limit 1`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+        
     }
-
-
 
 }
 
