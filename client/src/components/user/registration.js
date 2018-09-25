@@ -48,7 +48,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-              this.props.history.push('/mainpage');
+            this.props.history.push('/mainpage');
         }
 
     }
@@ -85,10 +85,17 @@ class Registration extends Component {
                 body: JSON.stringify(userInfo)
             }).then(res => res.json()).then(json => {
                 console.log(json)
-                window.localStorage.setItem('subscriber', json.data[0].id);
-                window.localStorage.setItem('mno', this.refs.mobileno.value);
-                window.localStorage.setItem('referralcode', refcode);
-                this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
+
+                if (json.data.length > 0) {
+                    window.localStorage.setItem('subscriber', json.data[0].id);
+                    window.localStorage.setItem('mno', this.refs.mobileno.value);
+                    window.localStorage.setItem('referralcode', refcode);
+                    this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
+                } else {
+                     alert("Please use Valid Referral code!!")
+                }
+
+
             });
         } else {
             alert("Please fill all mandatory Fields !!!");
@@ -117,7 +124,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -206,13 +213,13 @@ class Registration extends Component {
                                                 </div>
                 
                                             </div>
-                                            
-                                            
+                
+                
                                             <div className="form-group">
-                                            <p style={{"fontSize": "10px"}}><i>By registering, you are providing consent for sending Quiz/prize notifications to your mobile. </i></p>
-                                            <button type="button"  onClick={ () => {
-                                                    this.registerUser();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                <p style={{"fontSize": "10px"}}><i>By registering, you are providing consent for sending Quiz/prize notifications to your mobile. </i></p>
+                                                <button type="button"  onClick={ () => {
+                                                        this.registerUser();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
@@ -234,11 +241,11 @@ class Registration extends Component {
                                                                 <p>Congratulations!! Your Inter-Galactic VISA has been approved and we are waiting to host you on Agartha. 
                                                                 </p> 
                                                             </div>
-                                                            
-   <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
-                                                            
-                                                            
-                                                            
+                
+                                                            <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
+                
+                
+                
                                                         </div>
                 
                                                     </section>
@@ -296,7 +303,7 @@ class Registration extends Component {
                                             <div className="panel panel-default">
                                                 <div className="panel-heading">
                                                     <p>"Space-ship" bound to Agartha will be taking off on  <b>4-Oct-2018. </b> 
-                                                         Make the most of this once in a lifetime opportunity to travel the cosmos.
+                                                        Make the most of this once in a lifetime opportunity to travel the cosmos.
                                                     </p>  </div>
                 
                                             </div>
@@ -314,8 +321,8 @@ class Registration extends Component {
                 
                 </div>
 
-                                                );
+                                                    );
+                    }
                 }
-            }
 
-            export default withRouter(Registration);
+                export default withRouter(Registration);
