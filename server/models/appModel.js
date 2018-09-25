@@ -94,7 +94,7 @@ AppModel = {
                 throw err;
 
             async.each(results, (tokendetail) => {
-                console.log(JSON.stringify(tokendetail));
+              //  console.log(JSON.stringify(tokendetail));
 
 
                 if (tokendetail.hasOwnProperty('deviceid')) {
@@ -218,7 +218,7 @@ AppModel = {
             flag = false;
         }
 
-        console.log(query);
+       // console.log(query);
         if (flag) {
             driver.cypher({'query': query}, function (err, results) {
                 if (err)
@@ -334,7 +334,7 @@ AppModel = {
     },
     allusercount: function (objdata, callback) {
         var query = `optional match (u:User)-[]-(l:Location)-[]-(f:Floor) return f.fno as floorno, count(distinct u) as userCount order by userCount desc`;
-        console.log(query)
+        //console.log(query)
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -343,7 +343,7 @@ AppModel = {
     },
     spotcount: function (objdata, callback) {
         var query = `optional match (u:sUser)-[]-(l:sLocation)-[]-(f:sFloor) return f.fno as floorno, count(distinct u) as userCount order by userCount desc`;
-        console.log(query)
+      //  console.log(query)
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -352,7 +352,7 @@ AppModel = {
     },
     floorwiseuser: function (objdata, callback) {
         var query = ` match (u:User)-[]-(l:Location)-[]-(f:Floor{fno:${objdata.floorid}}) return count(distinct u) as userCount , l.projectName as projName, l.lid as proid`;
-        console.log(query);
+       // console.log(query);
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;

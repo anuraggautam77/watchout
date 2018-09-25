@@ -43,9 +43,9 @@ module.exports = (apiRoutes) => {
                     obj.status = 403;
                     obj.message = 'No token provided>>';
                 } else if (decoded) {//=== cryptr.decrypt(userid)) {
-                    console.log(decoded);
+                   // console.log(decoded);
                     if (bcrypt.compareSync(decoded.username, userid)) {
-                        console.log("valid");
+                     //   console.log("valid");
                         obj.status = 200;
                         obj.message = 'valid token>>>>>';
                     }
@@ -86,7 +86,7 @@ module.exports = (apiRoutes) => {
                 }
                 bcrypt.hash(req.body.password, salt, null, function (err, hash) {
                     req.body.password = hash;
-                    console.log(hash)
+                  //  console.log(hash)
                     AppModel.adminRegis(req.body, function (result) {
                         res.json({data: result});
                     });

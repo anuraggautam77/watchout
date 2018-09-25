@@ -206,8 +206,11 @@ class Registration extends Component {
                                                 </div>
                 
                                             </div>
+                                            
+                                            
                                             <div className="form-group">
-                                                <button type="button"  onClick={ () => {
+                                            <p><b>By registering, you are providing consent for sending Quiz/prize notifications to your mobile. Program is valid till 04-Oct-2018, data will be purged post 04-Oct-2018</b></p>
+                                            <button type="button"  onClick={ () => {
                                                     this.registerUser();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
