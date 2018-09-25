@@ -24,7 +24,7 @@ AppModel = {
          match (r:Referral{code:"${objdata.referredby}"})
          merge (r)-[:REFERRED_BY]-(u) return ID(u) as id`;
         }
-
+    
         /*
          
          var query = `merge (floor:Floor{fno:${objdata.floorno}})
