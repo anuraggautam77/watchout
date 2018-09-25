@@ -18,6 +18,18 @@
 
     .recall-grid-tile {
         display: inline-block;
+        width: 130px;
+        height: 130px;
+        background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));
+        border: 1px solid rgb(2, 2, 2);
+        div{
+            padding-top: 43px;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        .recall-grid-tile {
+        display: inline-block;
         width: 124px;
         height: 130px;
         background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));
@@ -27,7 +39,9 @@
             text-align: center;
         }
     }
-
+    }
+    
+    
 
     .recall-grid-tile.is-selected {
         background: linear-gradient(to right, rgb(201, 75, 75), rgb(75, 19, 79));
