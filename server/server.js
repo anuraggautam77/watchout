@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 
-var passport = require('passport');
+//var passport = require('passport');
 //const morgan = require('morgan');
 const fs = require('fs');
 //const historyApiFallback = require('connect-history-api-fallback');
@@ -14,8 +14,8 @@ const cors = require('cors');
 
 
 
-var settings = require('./config/settings');
-require('./config/passport')(passport);
+//var settings = require('./config/settings');
+//require('./config/passport')(passport);
 
 
 /*
@@ -24,7 +24,7 @@ require('./config/passport')(passport);
 const app = express();
 const apiRoutes = express.Router();
 const isDev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 2200;
 
 
 const server = app.listen(port, function () {
