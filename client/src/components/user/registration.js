@@ -1,6 +1,7 @@
 import React, { Component }
 from "react";
-import { withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter}
+from "react-router-dom";
 import Hashids from "hashids";
 import { WhatsappShareButton, WhatsappIcon } from 'react-share';
 class Registration extends Component {
@@ -47,7 +48,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-             this.props.history.push('/mainpage');
+              this.props.history.push('/mainpage');
         }
 
     }
@@ -116,7 +117,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -138,7 +139,7 @@ class Registration extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <h1>Register with Play n Win</h1>
+                                    <h1>Register for Inter-Galactic VISA</h1>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +196,7 @@ class Registration extends Component {
                                                 <label><i className="icon-building"></i> <b>Select Your Area <sup>*</sup> </b></label>
                                                 <div className={ `row`}>
                 
-                                                    <div className="form-group canvas-container col-md-12">
+                                                    <div className="form-group canvas-container col-md-12 text-center">
                                                         <div className="recall-grid">
                                                             {this.drawgrid()}
                                                         </div>
@@ -208,7 +209,7 @@ class Registration extends Component {
                                             <div className="form-group">
                                                 <button type="button"  onClick={ () => {
                                                     this.registerUser();
-                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
@@ -225,10 +226,16 @@ class Registration extends Component {
                                                         <div className="progress xs green"></div>
                                                         <div className="thanku-template">
                                                             <h2>  Hi {this.state.name}!</h2>
-                                                            <h3> Thanks for registration</h3>
+                                                            <h3> Congratulations !!!</h3>
                                                             <div className="thanku-details">
-                                                                <p>Don't miss the notifications to increase your chances of winning prizes.</p> 
+                                                                <p>Congratulations!! Your Inter-Galactic VISA has been approved and we are waiting to host you on Agartha. 
+                                                                </p> 
                                                             </div>
+                                                            
+   <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
+                                                            
+                                                            
+                                                            
                                                         </div>
                 
                                                     </section>
@@ -269,11 +276,34 @@ class Registration extends Component {
                 
                 
                                 </div>
-                                <div className="col-sm-4 col-sm-offset-1 social-login">
-                                    <p> </p>
-                                    <div className="social-login-buttons">
                 
-                                    </div>
+                                <div className="col-sm-4 col-sm-offset-1 social-login">
+                                    <div className="basic-login">                
+                                        <div className="text-center">
+                                            <img src="/img/Icon-100.png" alt="AGARTHA"/>
+                                        </div>
+                
+                                        <div className="in-press press-wired text-center">
+                                            <h4> THE FUTURE IS HISTORY</h4>
+                                        </div>
+                
+                                        <div className="panel-group">
+                                            <div className="panel panel-default">
+                                            </div>
+                                            <div className="panel panel-default">
+                                                <div className="panel-heading">
+                                                    <p>"Space-ship" bound to Agartha will be taking off on  <b>4-Oct-2018.</b> 
+                                                        Make the most of this once in a lifetime opportunity to travel the cosmos.
+                                                    </p>  </div>
+                
+                                            </div>
+                                        </div>     
+                
+                
+                
+                
+                                    </div>  
+                
                                 </div>
                             </div>
                         </div>

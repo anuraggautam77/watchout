@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import '../style/css/list.scss';
 import Header from './header/user';
+import Footer from './header/footer';
 import  PollList from "../components/poll/list";
 
 
@@ -23,6 +24,7 @@ class MainPage extends Component {
                 <div className="application landing">
                     <Header/>
                     <PollList/>
+                      <Footer/>
                 </div>
                 );
     }

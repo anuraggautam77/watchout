@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import  Detail from "../components/poll/detail";
+import Footer from './header/footer';
 import '../style/css/detail.scss';
 import Header from './header/user';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -74,7 +75,7 @@ class UserPollPage extends Component {
                 
                     })()
                     }
-                
+                  <Footer/>
                 </div>
 
 
