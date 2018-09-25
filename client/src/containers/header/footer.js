@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, withRouter}
 from "react-router-dom";
-import { WhatsappShareButton, WhatsappIcon } from 'react-share';
+ 
 
 class  Footer extends Component {
     constructor(props) {
@@ -14,13 +14,7 @@ class  Footer extends Component {
     }
     render() {
         return (
-                <div className="footer">
-                    <div className="container">
-                        <div className="row">
-                        </div>
-                
-                    </div>
-                </div>
+                <div></div>
                 );
     }
 }

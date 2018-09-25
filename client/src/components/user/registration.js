@@ -196,7 +196,7 @@ class Registration extends Component {
                                                 <label><i className="icon-building"></i> <b>Select Your Area <sup>*</sup> </b></label>
                                                 <div className={ `row`}>
                 
-                                                    <div className="form-group canvas-container col-md-12 text-center">
+                                                    <div className="form-group canvas-container col-md-12">
                                                         <div className="recall-grid">
                                                             {this.drawgrid()}
                                                         </div>
