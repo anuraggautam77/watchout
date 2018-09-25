@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     //'eval-source-map'
-    devtool: 'eval',
+    devtool: 'eval-source-map',
     watch: true,
     entry: {
         'app': ['babel-polyfill',
