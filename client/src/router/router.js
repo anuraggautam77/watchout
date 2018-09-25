@@ -47,7 +47,7 @@ const PrivateRoute =({ component: Component, ...rest }) => (
                      
                      
                      <Route path="/question/:id/:type" exact component={UserPollPage} />
-                     <Route path="/adminpanel" exact component={Adminlogin} /> 
+                     <Route path="/agadmin" exact component={Adminlogin} /> 
                      <Route path="/adminreg" exact component={AdminReg} /> 
                      <PrivateRoute path="/createque" exact component={CreateQuestion} /> 
                      <PrivateRoute path="/notify" exact component={Notification} /> 
