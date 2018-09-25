@@ -48,7 +48,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-            this.props.history.push('/mainpage');
+                this.props.history.push('/mainpage');
         }
 
     }
@@ -69,7 +69,7 @@ class Registration extends Component {
             var userInfo = {
                 lid: this.state.lid,
                 projectname: this.state.projectname,
-                deviceid: this.state.deviceid,
+                deviceid: window.localStorage.getItem('deviceToken'),
                 floorno: this.state.floorno,
                 mobileno: this.refs.mobileno.value,
                 name: this.refs.name.value,
@@ -84,7 +84,6 @@ class Registration extends Component {
                 },
                 body: JSON.stringify(userInfo)
             }).then(res => res.json()).then(json => {
-                console.log(json)
 
                 if (json.data.length > 0) {
                     window.localStorage.setItem('subscriber', json.data[0].id);
@@ -92,7 +91,7 @@ class Registration extends Component {
                     window.localStorage.setItem('referralcode', refcode);
                     this.setState({...this.state, navigation: "db", showform: "dn", name: this.refs.name.value});
                 } else {
-                     alert("Please use Valid Referral code!!")
+                    alert("Please use Valid Referral code!!")
                 }
 
 
@@ -124,7 +123,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -207,8 +206,6 @@ class Registration extends Component {
                                                         <div className="recall-grid">
                                                             {this.drawgrid()}
                                                         </div>
-                
-                
                                                     </div>
                                                 </div>
                 
@@ -219,72 +216,52 @@ class Registration extends Component {
                                                 <p style={{"fontSize": "10px"}}><i>By registering, you are providing consent for sending Quiz/prize notifications to your mobile. </i></p>
                                                 <button type="button"  onClick={ () => {
                                                         this.registerUser();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
                                     </div>
                 
-                
-                
                                     <div className={`row ${this.state.navigation}`}>
-                                        <div className='col-sm-12 col-md-6'>
-                                            <div className="well panel-heading service-wrapper alignheading">
-                                                <div className="widget-tile">
-                                                    <section>
-                                                        <h3> Thank you for registration</h3>
-                                                        <div className="progress xs green"></div>
-                                                        <div className="thanku-template">
-                                                            <h2>  Hi {this.state.name}!</h2>
-                                                            <h3> Congratulations !!!</h3>
-                                                            <div className="thanku-details">
-                                                                <p>Congratulations!! Your Inter-Galactic VISA has been approved and we are waiting to host you on Agartha. 
-                                                                </p> 
-                                                            </div>
-                
-                                                            <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
-                
-                
-                
-                                                        </div>
-                
-                                                    </section>
-                                                </div>
+                                        <div className="col-md-6 col-sm-6">
+                                            <div className="service-wrapper" style={{"padding": "0 18px 20px 18px"}}>
+                                                <img src="/img/tick1.png" style={{"height": "93px"}} alt="Service 1"/>
+                                                <h3> Thank you for registration</h3>
+                                                <div className="progress xs green" style={{"height": "5px", "backgroundColor": "rgb(0, 150, 136)"}}></div>
+                                                <h3>  Hi {this.state.name}!</h3>
+                                                <p>Congratulations!! Your Inter-Galactic VISA has been approved and we are waiting to host you on Agartha. </p> 
+                                                <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
                                             </div>
                                         </div>
-                                        <div className='col-sm-12 col-md-6'>
-                                            <div className="well panel-heading service-wrapper alignheading">
-                                                <div className="widget-tile">
-                                                    <section>
-                                                        <h3> Refferal Code</h3>
-                                                        <div className="progress xs green"></div>
-                                                        <div className="row">
-                                                            <div className="thanku-actions text-center">
-                                                                <p> Forward or share your refferal code with your friends to get chance to win Prize.
-                                                                </p>
+                                        <div className="col-md-6 col-sm-6">
+                                            <div className="service-wrapper" style={{"padding": "20px 18px 24px"}}>
+                                                <img src="/img/share.png" style={{"height": "70px"}} alt="Service 1"/>
+                                                <h3>Share your Refferal Code</h3>
+                                                <div className="progress xs green" style={{"height": "5px", "backgroundColor": "rgb(0, 150, 136)"}}></div>
+                                                <p> Forward or share your refferal code with your friends to get chance to win Prize.
+                                                </p>
+                                                <div className="row">
                 
-                                                                <div className='col-sm-12 col-md-6'>  
-                                                                    <div className="alert alert-success code "> {window.localStorage.getItem('referralcode')} </div>
-                                                                </div>
-                                                                <div className='col-sm-12 col-md-6 top'> 
-                                                                    <WhatsappShareButton 
-                                                                        url={`Referral Code: ${window.localStorage.getItem('referralcode')}  url: ${location.origin}/home/${window.localStorage.getItem('referralcode')}`}
-                                                                        > <WhatsappIcon size={32} round={true} />
-                                                                    </WhatsappShareButton>
-                                                                    <span>
-                                                                        <a href={`mailto:?subject=Referral Code ${window.localStorage.getItem('referralcode')}&body= url :${location.origin}/home/${window.localStorage.getItem('referralcode')}`}> <span className='glyphicon glyphicon-envelope icon-size'></span></a>
-                                                                        <a href={`sms://?&body=${window.localStorage.getItem('referralcode')}`} >SMS</a>
-                                                                    </span> 
-                                                                </div> 
-                                                            </div>
-                                                        </div>
-                                                    </section>
+                                                    <div className="col-md-6 col-sm-6">
+                                                        <div className="alert code "> {window.localStorage.getItem('referralcode')} </div>
+                                                    </div>
+                                                    <div className="col-md-6 col-sm-6">
+                                                        <WhatsappShareButton 
+                                                            url={`Referral Code: ${window.localStorage.getItem('referralcode')}  url: ${location.origin}/home/${window.localStorage.getItem('referralcode')}`}
+                                                            > <WhatsappIcon size={32} round={true} />
+                                                        </WhatsappShareButton>
+                                                        <a href={`mailto:?subject=Referral Code ${window.localStorage.getItem('referralcode')}&body= url :${location.origin}/home/${window.localStorage.getItem('referralcode')}`}> <span style={{"fontSize": "20px", "color": "green", "top": "4px"}} className='glyphicon glyphicon-envelope'></span></a>
+                                                        &nbsp; <a className="hidden-md" style={{"fontSize": "20px", "color": "green", "top": "9px"}} href={`sms://?&body=${window.localStorage.getItem('referralcode')}`} >SMS</a>
+                
+                
+                                                    </div>
+                
                                                 </div>
+                
+                
                                             </div>
                                         </div>
                                     </div>
-                
-                
                                 </div>
                 
                                 <div className="col-sm-4 col-sm-offset-1 social-login">
@@ -321,8 +298,8 @@ class Registration extends Component {
                 
                 </div>
 
-                                                    );
-                    }
-                }
+                                                                                    );
+                                                    }
+                                                }
 
-                export default withRouter(Registration);
+                                                export default withRouter(Registration);

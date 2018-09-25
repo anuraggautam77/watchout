@@ -99,6 +99,37 @@
   /*--------------------------------------------------------------------------
     +	Buttons Style
     --------------------------------------------------------------------------*/ }
+  .application .overpop {
+    z-index: 1;
+    position: absolute;
+    width: 204px;
+    height: 68px;
+    top: 0px;
+    right: 25%;
+    border: 1px dashed; }
+    .application .overpop .alert {
+      margin-bottom: 0; }
+    .application .overpop .code {
+      padding: 5px;
+      border: none; }
+    .application .overpop .SocialMediaShareButton div {
+      margin-left: 26px; }
+  @media (max-width: 768px) {
+    .application .overpop {
+      z-index: 1;
+      position: absolute;
+      width: 182px;
+      height: 68px;
+      top: 0px;
+      right: 2px;
+      border: 1px dashed; }
+      .application .overpop .alert {
+        margin-bottom: 0; }
+      .application .overpop .code {
+        padding: 5px;
+        border: none; }
+      .application .overpop .SocialMediaShareButton div {
+        margin-left: 26px; } }
   .application .dn {
     display: none; }
   .application .db {

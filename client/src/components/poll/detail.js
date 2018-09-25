@@ -144,8 +144,9 @@ class Detail extends Component {
                 <div className="section section-breadcrumbs">
                         <div className="container">
                             <div className="row">
+                            
                                 <div className="col-md-6">
-                                <h1> <span className="text-uppercase">{this.state.detail[0].type}</span> : {this.state.detail[0].que}</h1>
+                                    <h1>  <span className="text-uppercase">{this.state.detail[0].type}</span> : {this.state.detail[0].que}</h1>
                                 </div>
                             </div>
                         </div>
@@ -157,14 +158,28 @@ class Detail extends Component {
                     <div className="row" style={ { "borderRadius":"6px", "paddingTop": "17px", backgroundImage: "url(/img/bg-dash.png)" } } >
                           <div className={`col-sm-6 col-xs-12 ${this.state.questionshow}`}>
                                 <div className="form-group">
+                                
                                     {optionList}
                                     <br/>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                       
                                     { (()=>{
                                        if(!this.state.disabled) {
-                                          return (<button  className="btn btn-lg btn-primary btn-block"  name="Submit" 
-                                    onClick={() => {  this.submitHandler(this.state.detail[0].type) }} >
-                                        Submit
-                                    </button>)  
+                                          return (
+                                                  <div>
+                           
+                                    
+                                  <Link style={{"width":"123px"}} className="btn  btn-primary pull-right" to={`/mainpage`}>  Back </Link>
+                                  <button type="button" style={{"width":"123px"}} onClick={() => {  this.submitHandler(this.state.detail[0].type) }} 
+                                              className="btn"> Submit</button>
+                                
+                            </div>            
+                                    )  
                                        }
                                      })()
                                      }

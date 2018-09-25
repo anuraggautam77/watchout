@@ -74,7 +74,7 @@ class PollList extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h1>Question Listing</h1>
+                                    <h1>DashBoard</h1>
                                 </div>
                             </div>
                         </div>
