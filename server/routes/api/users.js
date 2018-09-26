@@ -199,9 +199,18 @@ module.exports = (apiRoutes) => {
                 resolve(quizlist);
             });
         });
+        
+        
+         var refferalCode = new Promise(function (resolve, reject) {
+            AppModel.getrefferalcode(req.body, (results) => {
+                resolve(results);
+            });
+        });
 
-        Promise.all([getPollList, getQuizList]).then(function (values) {
-            res.json({status: "success", pollList: values[0], quizList: values[1]});
+        
+
+        Promise.all([getPollList, getQuizList,refferalCode]).then(function (values) {
+            res.json({status: "success", pollList: values[0], quizList: values[1],refferalCode:values[2]});
 
         });
 
@@ -228,8 +237,13 @@ module.exports = (apiRoutes) => {
 
         var getQuestionData = new Promise(function (resolve, reject) {
             AppModel.getQuestion(req.params, (results) => {
-                results[0].options = [results[0].op1, results[0].op2, results[0].op3, results[0].op4];
-                resolve(results);
+                if(results.length>0){
+                    results[0].options = [results[0].op1, results[0].op2, results[0].op3, results[0].op4];
+                resolve(results); 
+                }else{
+                    resolve([])
+                }
+               
             });
         });
 

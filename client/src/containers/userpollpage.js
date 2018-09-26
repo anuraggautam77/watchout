@@ -5,7 +5,7 @@ import  Detail from "../components/poll/detail";
 import Footer from './header/footer';
 import '../style/css/detail.scss';
 import Header from './header/user';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 
 
 class UserPollPage extends Component {
@@ -19,12 +19,14 @@ class UserPollPage extends Component {
 
     }
     componentWillMount() {
-
+       
         if (this.props.match.params.type === "poll" || this.props.match.params.type === "quiz") {
             var type = this.props.match.params.type;
             var id = this.props.match.params.id;
             var userid = window.localStorage.getItem('subscriber');
-            fetch(`/api/getque/${id}/${type}/${userid}`, {
+           
+            if(userid){
+                 fetch(`/api/getque/${id}/${type}/${userid}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -32,7 +34,14 @@ class UserPollPage extends Component {
                 }
             }).then(res => res.json()).then(json => {
                 this.setState({question: json.que, already: json.already});
-            });
+            }); 
+                
+            }else{
+                
+                   this.props.history.push('/');
+            }
+            
+          
 
         } else {
 
@@ -87,4 +96,4 @@ class UserPollPage extends Component {
     }
 }
 
-export default UserPollPage;
+export default withRouter(UserPollPage);;

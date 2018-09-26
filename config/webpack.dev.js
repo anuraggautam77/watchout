@@ -5,8 +5,8 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
     //'eval-source-map'
-    //  devtool: 'eval',
-    //  watch: true,
+   // devtool: 'eval',
+   // watch: true,
     entry: {
         'app': ['babel-polyfill',
             './client/src/'
@@ -25,6 +25,7 @@ module.exports = merge(commonConfig, {
     //
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
+          
         })
     ]
 

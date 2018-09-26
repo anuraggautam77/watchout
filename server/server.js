@@ -24,7 +24,7 @@ const cors = require('cors');
 const app = express();
 const apiRoutes = express.Router();
 const isDev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 2400;
+const port = process.env.PORT || 2500;
 
 
 const server = app.listen(port, function () {

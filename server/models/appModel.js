@@ -45,7 +45,7 @@ AppModel = {
     },
     updatedevice: function (objdata, callback) {
 
-       
+
         var query = ` match (u:User) where ID(u)=${objdata.id} set u.devID="${objdata.tokenid}" return u`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
@@ -238,13 +238,22 @@ AppModel = {
             flag = false;
         }
 
-        // console.log(query);
+        console.log(query);
         if (flag) {
             driver.cypher({'query': query}, function (err, results) {
                 if (err)
                     throw err;
-                results[0].type = objdata.type;
-                callback(results);
+
+                console.log(results);
+
+                if (results.length > 0) {
+                    results[0].type = objdata.type;
+                    callback(results);
+                } else {
+
+                    callback([]);
+                }
+
             });
         } else {
             callback([]);
@@ -399,7 +408,7 @@ AppModel = {
 
     },
     getrefferalcode: function (objdata, callback) {
-        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 2`;
+        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 3`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;

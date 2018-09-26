@@ -48,7 +48,7 @@ class Registration extends Component {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
         if (subscriber !== null && devicetoken !== null) {
-                this.props.history.push('/mainpage');
+              this.props.history.push('/mainpage');
         }
 
     }
@@ -281,13 +281,11 @@ class Registration extends Component {
                                                 <div className="panel-heading">
                                                     <p>"Space-ship" bound to Agartha will be taking off on  <b>4-Oct-2018. </b> 
                                                         Make the most of this once in a lifetime opportunity to travel the cosmos.
-                                                    </p>  </div>
+                                                    </p> 
+                                                </div>
                 
                                             </div>
                                         </div>     
-                
-                
-                
                 
                                     </div>  
                 
