@@ -25,7 +25,7 @@ module.exports = merge(commonConfig, {
     //
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
-          
+            
         })
     ]
 

@@ -84,8 +84,13 @@ class PollList extends Component {
                     <div className="section section-breadcrumbs">
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-8">
                                     <h1>Dashboard</h1>
+                                    <br/>
+                                    <div style={{"color": "#efeff1"}}>
+                                        <p><b>Quiz questions</b> will be posted at 11.00 AM, 1.00 PM and 3.00 PM every day. The winners for each quiz will be decided based on who correctly answers them the quickest and will be awarded a gift.</p> 
+                
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -98,10 +103,7 @@ class PollList extends Component {
                                         {childElements}  
                 
                                         <div className="col-md-12 col-sm-12"> 
-                                            <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "5px"}}>
-                                                <p><b>Quiz questions</b> will be posted at 11.00 AM, 1.00 PM and 3.00 PM every day. The winners for each quiz will be decided based on who correctly answers them the quickest and will be awarded a gift.</p>
                 
-                                            </div>    
                                         </div>   
                 
                                     </div>
@@ -111,7 +113,7 @@ class PollList extends Component {
                                             <h3>Welcome to "Agartha" earthling!!</h3>
                                             <p>Agartha is all about creating better future with the help of history.
                                             </p>
-                                            <img src="/img/poster.jpg" style={{ "width": "100%"}} />
+                                            <img src="/img/poster.jpg" style={{"width": "100%"}} />
                 
                                         </div>
                 
@@ -130,15 +132,15 @@ class PollList extends Component {
                                             </div>
                 
                                         </div>
-                                         
+                
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                                            );
-                                }
+                                        );
                             }
+                        }
 
-                            export default withRouter(PollList);
+                        export default withRouter(PollList);
