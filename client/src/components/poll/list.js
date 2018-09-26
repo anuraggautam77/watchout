@@ -116,7 +116,7 @@ class PollList extends Component {
                 
                                             <div>
                                                 <div className="panel panel-default">
-                                                    <div className="panel-heading"><b> Leading rrefferals  </b></div>
+                                                    <div className="panel-heading"><b> Leading Refferals  </b></div>
                                                     <div className="panel-body text-center">
                                                         {  (() => this.refferalcode())() }
                                                     </div>

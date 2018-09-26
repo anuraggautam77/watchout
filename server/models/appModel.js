@@ -280,7 +280,7 @@ AppModel = {
             if (err)
                 throw err;
             if (objdata.type === 'poll') {
-                var countquery = `match (p:Poll)<-[r]-(u:User) where ID(p)=${objdata.id} return r.ans as rans, count(r.ans) as ansCount,p.op1 as op1,p.op2 as op2,p.op3 as op3,p.op4 as op4`
+                var countquery = `match (p:Poll)<-[r]-(u:User) where ID(p)=${objdata.id} return r.ans as rans, count(r.ans) as ansCount,p.op1 as op1,p.op2 as op2,p.op3 as op3,p.op4 as op4`;
                 driver.cypher({'query': countquery}, function (err, count) {
                     if (err)
                         throw err;
@@ -408,7 +408,7 @@ AppModel = {
 
     },
     getrefferalcode: function (objdata, callback) {
-        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 3`;
+        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 2`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
