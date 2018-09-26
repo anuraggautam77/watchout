@@ -18,9 +18,9 @@ logoutHandler() {
 
  componentDidMount() {
      
-  var userInfo={id: window.localStorage.getItem('subscriber'),  tokenid:window.localStorage.getItem('deviceToken')};
+  //var userInfo={id: window.localStorage.getItem('subscriber'),  tokenid:window.localStorage.getItem('deviceToken')};
      
-  
+  /*
  fetch('/api/updatedeviceid', {
                 method: 'POST',
                 headers: {
@@ -29,7 +29,7 @@ logoutHandler() {
                 },
                 body: JSON.stringify(userInfo)
             }).then(res => res.json()).then(json => { });
-
+*/
 
 
  }
