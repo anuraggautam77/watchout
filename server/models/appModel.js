@@ -3,6 +3,9 @@ const driver = connection().getInstance();
 const request = require('request');
 const async = require('async');
 const isDebugLocal = false;
+
+const smsURL = 'http://api.msg91.com/api/sendhttp.php?country=91&sender=AGARTA&route=4&authkey=239451AvNPnFqq0Nx5baa6ad7';
+
 AppModel = {
     userRegistration: function (objdata, callback) {
         console.log(objdata);
@@ -24,7 +27,7 @@ AppModel = {
          match (r:Referral{code:"${objdata.referredby}"})
          merge (r)-[:REFERRED_BY]-(u) return ID(u) as id`;
         }
-    
+
         /*
          
          var query = `merge (floor:Floor{fno:${objdata.floorno}})
@@ -39,6 +42,16 @@ AppModel = {
         });
 
 
+    },
+    updatedevice: function (objdata, callback) {
+
+        console.log(objdata);
+        var query = ` match (u:User) where ID(u)=${objdata.id } set u.devID="${objdata.tokenid}" return u`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
     },
     spotRegistration: function (objdata, callback) {
 
@@ -93,8 +106,10 @@ AppModel = {
             if (err)
                 throw err;
 
+
+
             async.each(results, (tokendetail) => {
-              //  console.log(JSON.stringify(tokendetail));
+                //  console.log(JSON.stringify(tokendetail));
 
 
                 if (tokendetail.hasOwnProperty('deviceid')) {
@@ -142,9 +157,14 @@ AppModel = {
 
             });
 
+            async.each(results, (mobiledetail) => {/*${mobiledetail.mobile}*/
+                messagetxt = `mobiles=${mobiledetail.mobile}&message=Hi%20${mobiledetail.name[0].toLocaleUpperCase() + (mobiledetail.name.substring)(1)},%20New%20Question%20Published,%20pls%20visit%20https://playnwin.herokuapp.com/${notificationData.actionUrl}`;
+                request({url: smsURL + "&" + messagetxt, method: 'GET', }, function (error, response, body) {
+                    console.log(`>>>>>>>Messgae set to>${mobiledetail.mobile} ${mobiledetail.name}`);
 
+                });
 
-
+            });
 
         });
 
@@ -218,7 +238,7 @@ AppModel = {
             flag = false;
         }
 
-       // console.log(query);
+        // console.log(query);
         if (flag) {
             driver.cypher({'query': query}, function (err, results) {
                 if (err)
@@ -343,7 +363,7 @@ AppModel = {
     },
     spotcount: function (objdata, callback) {
         var query = `optional match (u:sUser)-[]-(l:sLocation)-[]-(f:sFloor) return f.fno as floorno, count(distinct u) as userCount order by userCount desc`;
-      //  console.log(query)
+        //  console.log(query)
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -352,7 +372,7 @@ AppModel = {
     },
     floorwiseuser: function (objdata, callback) {
         var query = ` match (u:User)-[]-(l:Location)-[]-(f:Floor{fno:${objdata.floorid}}) return count(distinct u) as userCount , l.projectName as projName, l.lid as proid`;
-       // console.log(query);
+        // console.log(query);
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -386,27 +406,23 @@ AppModel = {
             callback(results);
         });
     },
-    
-    
-    mostdenFloor:function(objdata, callback){
-         var query = `match (u:User)-[]-(l:Location)-[]-(f:Floor) return f.fno as fn, count(DISTINCT u) as userCount order by userCount desc limit 1`;
+    mostdenFloor: function (objdata, callback) {
+        var query = `match (u:User)-[]-(l:Location)-[]-(f:Floor) return f.fno as fn, count(DISTINCT u) as userCount order by userCount desc limit 1`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
             callback(results);
         });
-        
+
     },
-    
-    
-     mostdenLoc:function(objdata, callback){
-         var query = `match (u:User)-[]-(l:Location) return l.projectName as blockname,l.lid as loc, count(DISTINCT u) as userCount order by userCount desc limit 1`;
+    mostdenLoc: function (objdata, callback) {
+        var query = `match (u:User)-[]-(l:Location) return l.projectName as blockname,l.lid as loc, count(DISTINCT u) as userCount order by userCount desc limit 1`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
             callback(results);
         });
-        
+
     }
 
 }
