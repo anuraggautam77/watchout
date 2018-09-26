@@ -14,12 +14,12 @@ class PollList extends Component {
         super(props);
         this.state = {
             list: [],
-            refferalCode:[]
+            refferalCode: []
         };
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
-       
-       if (subscriber === null ) {
+
+        if (subscriber === null) {
             this.props.history.push('/');
         }
 
@@ -33,10 +33,9 @@ class PollList extends Component {
             },
             body: JSON.stringify({})
         }).then(res => res.json()).then(json => {
-            this.setState({'list': json.pollList.concat(json.quizList),refferalCode:json.refferalCode});
+            this.setState({'list': json.pollList.concat(json.quizList), refferalCode: json.refferalCode});
         });
     }
-    
     refferalcode() {
 
         var template = this.state.refferalCode.map((option, i) => {
@@ -47,8 +46,6 @@ class PollList extends Component {
         });
         return template;
     }
-    
-    
     render() {
         /*
          <div className="col-md-3 col-sm-6">
@@ -99,13 +96,22 @@ class PollList extends Component {
                                 <div className="row">
                                     <div className="col-md-5 col-sm-12">
                                         {childElements}  
+                
+                                        <div className="col-md-12 col-sm-12"> 
+                                            <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "5px"}}>
+                                                <p><b>Quiz questions</b> will be posted at 11.00 AM, 1.00 PM and 3.00 PM every day. The winners for each quiz will be decided based on who correctly answers them the quickest and will be awarded a gift.</p>
+                
+                                            </div>    
+                                        </div>   
+                
                                     </div>
-                                    <div className="col-md-2 col-sm-12"></div>
-                                    <div className="col-md-5 col-sm-12" >
+                                    <div className="col-md-1 col-sm-12"></div>
+                                    <div className="col-md-6 col-sm-12" >
                                         <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "5px"}}>
                                             <h3>Welcome to "Agartha" earthling!!</h3>
                                             <p>Agartha is all about creating better future with the help of history.
                                             </p>
+                                            <img src="/img/poster.jpg" style={{ "width": "100%"}} />
                 
                                         </div>
                 
@@ -124,18 +130,15 @@ class PollList extends Component {
                                             </div>
                 
                                         </div>
-                                        <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "5px"}}>
-                                            <p><b>Quiz questions</b> will be posted at 11.00 AM, 1.00 PM and 3.00 PM every day. The winners for each quiz will be decided based on who correctly answers them the quickest and will be awarded a gift.</p>
-                
-                                        </div>
+                                         
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                                    );
-                        }
-                    }
+                                            );
+                                }
+                            }
 
-                    export default withRouter(PollList);
+                            export default withRouter(PollList);
