@@ -16,22 +16,22 @@ logoutHandler() {
 }
 
 
- componentDidMount() {
-     
-  //var userInfo={id: window.localStorage.getItem('subscriber'),  tokenid:window.localStorage.getItem('deviceToken')};
-     
-  /*
- fetch('/api/updatedeviceid', {
+ componentDidMount() {          
+   
+  
+     if((window.localStorage.getItem('subscriber')!==null) && (window.localStorage.getItem('deviceToken')!==null)){
+          var userInfo={id: window.localStorage.getItem('subscriber'),  tokenid:window.localStorage.getItem('deviceToken')};
+          fetch('/api/updatedeviceid', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(userInfo)
-            }).then(res => res.json()).then(json => { });
-*/
-
-
+            }).then();
+         
+     } 
+  
  }
 
 

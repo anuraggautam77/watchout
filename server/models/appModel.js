@@ -45,8 +45,8 @@ AppModel = {
     },
     updatedevice: function (objdata, callback) {
 
-        console.log(objdata);
-        var query = ` match (u:User) where ID(u)=${objdata.id } set u.devID="${objdata.tokenid}" return u`;
+       
+        var query = ` match (u:User) where ID(u)=${objdata.id} set u.devID="${objdata.tokenid}" return u`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;

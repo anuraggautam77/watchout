@@ -78,7 +78,7 @@ module.exports = (apiRoutes) => {
      apiRoutes.post(`/${SERVICE_CONST.UPDATE_DEVICE}`, function (req, res) {
         
           AppModel.updatedevice(req.body, function (result) {
-              
+                 res.json({success: true});
           })
     });
 
