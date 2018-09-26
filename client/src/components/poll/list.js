@@ -40,7 +40,7 @@ class PollList extends Component {
 
         var template = this.state.refferalCode.map((option, i) => {
             return (
-                    <li className={`list-group-item`}  key={i}>  
+                    <li className={`list-group-item`} style={{"textAlign": "left"}}   key={i}>  
                         <strong>{option.name}</strong>  <span className="badge" >{option.userCount}</span> 
                     </li>);
         });
@@ -92,6 +92,15 @@ class PollList extends Component {
                 
                                     </div> 
                                 </div>
+                                <div className="col-md-1"></div>
+                                <div className="col-md-3">
+                                    <div className="panel panel-default" >
+                                        <div className="panel-heading"><b> Leading Referrals!!  </b></div>
+                                        <div className="panel-body text-center" style={{"padding": "0"}} >
+                                            {  (() => this.refferalcode())() }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,9 +111,6 @@ class PollList extends Component {
                                     <div className="col-md-5 col-sm-12">
                                         {childElements}  
                 
-                                        <div className="col-md-12 col-sm-12"> 
-                
-                                        </div>   
                 
                                     </div>
                                     <div className="col-md-1 col-sm-12"></div>
@@ -122,14 +128,7 @@ class PollList extends Component {
                                                 We have exciting <b>goodies for top two referrers</b>, please share the message with fellow earthlings to help them board space-ship on this exciting journey.
                                             </p>
                 
-                                            <div>
-                                                <div className="panel panel-default">
-                                                    <div className="panel-heading"><b> Leading Refferals  </b></div>
-                                                    <div className="panel-body text-center">
-                                                        {  (() => this.refferalcode())() }
-                                                    </div>
-                                                </div>
-                                            </div>
+                
                 
                                         </div>
                 
