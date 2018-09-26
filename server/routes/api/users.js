@@ -27,7 +27,8 @@ const SERVICE_CONST = {
     ALL_USER_COUNT: 'alluserdetail',
     FLOOR_WISE_COUNT: 'floorwsie',
     ADMIN_REGISTER: 'register',
-    ADMIN_LOGIN: 'adminlogin'
+    ADMIN_LOGIN: 'adminlogin',
+    UPDATE_DEVICE:'updatedeviceid'
 };
 
 module.exports = (apiRoutes) => {
@@ -71,6 +72,14 @@ module.exports = (apiRoutes) => {
         let objCheck = tokenVerify(req, res);
         res.status(objCheck.status).json({status: objCheck.status, message: objCheck.message});
 
+    });
+    
+    
+     apiRoutes.post(`/${SERVICE_CONST.UPDATE_DEVICE}`, function (req, res) {
+        
+          AppModel.updatedevice(req.body, function (result) {
+              
+          })
     });
 
 

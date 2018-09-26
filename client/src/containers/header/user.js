@@ -14,6 +14,27 @@ super(props);
 logoutHandler() {
 
 }
+
+
+ componentDidMount() {
+     
+  var userInfo={id: window.localStorage.getItem('subscriber'),  tokenid:window.localStorage.getItem('deviceToken')};
+     
+  
+ fetch('/api/updatedeviceid', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userInfo)
+            }).then(res => res.json()).then(json => { });
+
+
+
+ }
+
+
 render() {
 return (
 <div className="mainmenu-wrapper">
