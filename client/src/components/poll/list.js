@@ -50,7 +50,7 @@ class PollList extends Component {
 
 
         const childElements = this.state.list.map((obj, index) => {
-            return (<div className="image-element-class col-md-3 col-sm-6" key={obj.id}>
+            return (<div className="image-element-class col-md-12 col-sm-12" key={obj.id}>
             
                 <div className="service-wrapper">
                     <div className="ribbon-wrapper">
@@ -74,7 +74,7 @@ class PollList extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h1>DashBoard</h1>
+                                    <h1>Dashboard</h1>
                                 </div>
                             </div>
                         </div>
@@ -83,22 +83,35 @@ class PollList extends Component {
                         <div className="section">
                             <div className="container">
                                 <div className="row">
-                                    <Masonry
-                                        className={'my-gallery-class'} 
-                                        options={masonryOptions}  
-                                        updateOnEachImageLoad={false} 
-                                        imagesLoadedOptions={imagesLoadedOptions} 
-                                        >
-                                        {childElements}           
-                                    </Masonry>
+                                    <div className="col-md-5 col-sm-12">
+                                        {childElements}  
+                                    </div>
+                                    <div className="col-md-2 col-sm-12"></div>
+                                    <div className="col-md-5 col-sm-12" style={{"backgroundColor": "#efeff1", "borderRadius":"5px", "paddingTop": "14px"}}>
+                                        <div className="portfolio-item-description" >
+                                            <h3>Welcome to "Agartha" earthling!!</h3>
+                                            <p>Agartha is all about creating better future with the help of history.
+                                            </p>
+                                            <p>
+                                                We have exciting <b>goodies for top two referrers</b>, please share the message with fellow earthlings to help them board space-ship on this exciting journey.
+                                            </p>
+                
+                                            <p><b>Quiz questions</b> will be posted at 11.00 AM, 1.00 PM and 3.00 PM every day. The winners for each quiz will be decided based on who correctly answers them the quickest and will be awarded a gift.</p>
+                
+                                        </div>
+                
+                
+                                    </div>
+                
+                
                 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                );
+                            );
+                }
     }
-}
 
-export default withRouter(PollList);
+    export default withRouter(PollList);
