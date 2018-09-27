@@ -54,9 +54,7 @@ return (
         
         (()=>{
          if(window.localStorage.getItem('referralcode')!==null){
-            
-                
-                return(<div className="overpop">
+          return(<div className="overpop">
     
         
         

@@ -1,7 +1,14 @@
 .detailPage{
 
 
+    .funkyradio{
 
+        strong{
+            z-index: 1111;
+            position: inherit;
+        }
+
+    }
 
     .funkyradio div {
         clear: both;
@@ -13,6 +20,8 @@
         border-radius: 3px;
         border: 1px solid #D1D3D4;
         font-weight: normal;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
     .funkyradio input[type="radio"]:empty  {
@@ -22,7 +31,7 @@
     .funkyradio input[type="radio"]:empty ~ label{
         position: relative;
         line-height: 2.5em;
-        text-indent: 3.25em;
+        text-indent: 0.25m;
         margin-top: 2em;
         cursor: pointer;
         -webkit-user-select: none;
@@ -38,7 +47,7 @@
         bottom: 0;
         left: 0;
         content: '';
-        width: 2.5em;
+        width: 100%;
         background: #D1D3D4;
         border-radius: 3px 0 0 3px;
     }
@@ -48,7 +57,7 @@
     }
 
     .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before{
-        content: '\2714';
+        // content: '\2714';
         text-indent: .9em;
         color: #C2C2C2;
     }
@@ -58,7 +67,7 @@
     }
 
     .funkyradio input[type="radio"]:checked ~ label:before {
-        content: '\2714';
+        // content: '\2714';
         text-indent: .9em;
         color: #333;
         background-color: #ccc;
@@ -97,6 +106,10 @@
         color: #fff;
         background-color: #5bc0de;
     }
+
+
+
+
 
     .correct-answer{
         background-color: #5cb85c;

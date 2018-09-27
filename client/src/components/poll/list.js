@@ -112,7 +112,7 @@ class PollList extends Component {
                     
                     
                                         <div className="col-md-5 col-sm-12" >
-                                            <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "5px"}}>
+                                            <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "17px"}}>
                                                 <h3>Welcome to "Agartha" earthling!!</h3>
                                                 <p>Agartha is all about creating better future with the help of history.
                                                 </p>

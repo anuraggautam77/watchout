@@ -408,7 +408,7 @@ AppModel = {
 
     },
     getrefferalcode: function (objdata, callback) {
-        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(u) as userCount, ru.name as name order by userCount desc LIMIT 2`;
+        var query = `optional match (ru:User)-[:REFERRAL_CODE]-(r:Referral) optional match (r)-[:REFERRED_BY]-(u:User) return r.code as code,ru.devID  as deviceID,count(distinct u.phone) as userCount, ru.name as name order by userCount desc LIMIT 2`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
