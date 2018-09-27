@@ -2,7 +2,9 @@
     /*--------------------------------------------------------------------------
             General Style
     --------------------------------------------------------------------------*/
-
+    hr{
+        border-top: 1px solid rgb(10, 2, 2);
+    }
 
     .overpop{
         z-index: 1;
@@ -174,7 +176,7 @@
     /* Multicolumn */
     .service-wrapper {
         background: #FFF;
-        margin: 20px 10px;
+        //   margin: 20px 10px;
         text-align: center;
         padding: 30px 20px;
         -webkit-border-radius: 5px;
@@ -1340,6 +1342,8 @@
     --------------------------------------------------------------------------*/
     .basic-login {
         background: rgba(255, 255, 255, 0.8);
+
+        //  background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));
         padding: 20px 20px 10px 20px;
         -webkit-border-radius: 5px;
         -webkit-background-clip: padding-box;
@@ -1581,7 +1585,7 @@
     --------------------------------------------------------------------------*/
     .section-breadcrumbs {
         background: #222;
-        background: rgba(34, 34, 34, 0.8);
+        background: linear-gradient(to right, rgb(51, 77, 80), rgb(203, 202, 165));
         margin-bottom: 10px;
     }
     .section-breadcrumbs h1 {

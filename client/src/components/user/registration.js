@@ -8,7 +8,6 @@ class Registration extends Component {
     constructor(props) {
         super(props);
         var referredby = '';
-        console.log(">>>>>", this.props)
         if (this.props.match.hasOwnProperty('params')) {
             if (this.props.match.params.id) {
                 referredby = this.props.match.params.id;
@@ -30,6 +29,35 @@ class Registration extends Component {
             referredby: referredby
         };
     }
+    signin() {
+
+        if (this.refs.mobilenolng.value.length > 0 && this.refs.mobilenolng.value !== null) {
+
+            fetch('/api/getuserdetail', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({mobileno: this.refs.mobilenolng.value})
+            }).then(res => res.json()).then(json => {
+
+                if (json.detail.length > 0) {
+                    window.localStorage.setItem('subscriber', json.detail[0].id);
+                    window.localStorage.setItem('mno', json.detail[0].phone);
+                    window.localStorage.setItem('referralcode', json.detail[0].refcode);
+                    this.props.history.push('/mainpage');
+                } else {
+                    alert("your mobile number is not registered with us !")
+                }
+
+
+            });
+
+
+        }
+
+    }
     generateSquareMatrix(num, init, max, diff, floorno) {
         var arr = [], row, col;
         var i = init;
@@ -47,8 +75,8 @@ class Registration extends Component {
     componentWillMount() {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
-        if (subscriber !== null ) {
-              this.props.history.push('/mainpage');
+        if (subscriber !== null) {
+            this.props.history.push('/mainpage');
         }
 
     }
@@ -64,7 +92,7 @@ class Registration extends Component {
     }
     registerUser() {
         if (this.refs.mobileno.value !== '' && this.refs.name.value !== '' && this.state.lid !== '' && this.state.projectname !== '') {
-            var hashids = new Hashids(this.refs.name.value);
+            var hashids = new Hashids(this.refs.name.value + "" + this.refs.mobileno.value);
             var refcode = hashids.encode(1, 2, 3); // Z4UrtW
             var userInfo = {
                 lid: this.state.lid,
@@ -123,7 +151,7 @@ class Registration extends Component {
                                                      className={this.checkstatus(blockid) } 
                                                      onClick={(e) => {
                                                         this.gridClickHandler(e, colIdx)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }}
                                                      > 
                                                     <div> Seat No<br/>{ col }
                                                     </div>
@@ -146,6 +174,10 @@ class Registration extends Component {
                             <div className="row">
                                 <div className="col-md-12">
                                     <h1>Register for Inter-Galactic VISA</h1>
+                                    <br/>
+                                    <p style={{"color": "rgb(239, 239, 241)"}}><b>Space-ship</b> bound to Agartha will be taking off on  <b>4-Oct-2018. </b> 
+                                        Make the most of this once in a lifetime opportunity to travel the cosmos.
+                                    </p> 
                                 </div>
                             </div>
                         </div>
@@ -154,9 +186,43 @@ class Registration extends Component {
                     <div className="section galaxy-container">
                         <div className="container">
                             <div className="row">
+                                <div className="col-sm-4">
+                                    <div className="basic-login" style={{"background": "linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255))"}}>                
+                                        <div className="text-center">
+                                            <img src="/img/Icon-100.png" alt="AGARTHA"/>
+                                        </div>
+                                        <div className="in-press press-wired text-center">
+                                            <h4> THE FUTURE IS HISTORY</h4>
+                                            <hr/>
+                                        </div>
+                
+                                        <div className={`${this.state.showform}`}>
+                                            <form>
+                                                <div className="form-group">
+                                                    <label htmlFor="restore-email"><b>Sign-up</b></label>
+                                                    <input className="form-control" type="text" size="20" ref="mobilenolng"  minLength="9" maxLength="10"  placeholder="Enter your registered Mobile number!"/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <button type="button" 
+                                                            onClick={() => {
+                                        this.signin();
+                                                                 }}
+                                                            className="btn pull-right">Sign in</button>
+                                                    <div className="clearfix"></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div className={`${this.state.navigation}`}>
+                                            <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
+                                        </div>
+                                    </div>  
+                                </div>
+                
                                 <div className="col-sm-7">
                                     <div className={ `basic-login ${this.state.showform}`}>
                                         <form role="form">
+                                            <h3> Registration </h3>
+                                            <hr/>
                                             <div className="form-group">
                                                 <label><i className="icon-user"></i> <b>Nick Name<sup>*</sup></b></label>
                                                 <input minLength="3" maxLength="20"  type="text"  name="first_name" id="first_name" className="form-control input-sm" placeholder="Nick Name" required="required" ref="name"  />
@@ -170,19 +236,19 @@ class Registration extends Component {
                                                 <label><i className="glyphicon glyphicon-gift"></i> <b>Refferal Code</b></label>
                                                 <input  name="referredby"  ref="referredby" autoComplete="" size="20" minLength="0" maxLength="6"  placeholder="Use refferal Code if any !!" className="form-control input-sm"
                                                         onChange={
-                    (e) => {
-                        this.setState({...this.state, referredby: e.target.value })}}
+                                        (e) => {
+                                            this.setState({...this.state, referredby: e.target.value })}}
                                                         type="text"
                                                         />
                                             </div>
                                             <div className="form-group">
                                                 <label><i className="icon-building"></i> <b>Select Floor <sup>*</sup></b></label>
                                                 <select   onChange={
-                            (event) => {
-                                if (event.target.value !== '') {
-                                    this.setState({...this.state, floorno: event.target.value, showgrid: 'db', matrix: this.generateSquareMatrix(4, 1, 600, 39, event.target.value)  })
+                                                (event) => {
+                                                    if (event.target.value !== '') {
+                                                        this.setState({...this.state, floorno: event.target.value, showgrid: 'db', matrix: this.generateSquareMatrix(4, 1, 600, 39, event.target.value)  })
                                                           }else{
-                                                                                      this.setState({...this.state, showgrid: 'dn'})
+                                                                                                          this.setState({...this.state, showgrid: 'dn'})
                                                           }
                                                           }} 
                                                           id="inputState" className="form-control input-sm">
@@ -198,7 +264,7 @@ class Registration extends Component {
                                             </div>
                 
                                             <div className={
-                                                `form-group ${this.state.showgrid}`}>
+                                                                    `form-group ${this.state.showgrid}`}>
                                                 <label><i className="icon-building"></i> <b>Select Your Area <sup>*</sup> </b></label>
                                                 <div className={ `row`}>
                 
@@ -215,8 +281,8 @@ class Registration extends Component {
                                             <div className="form-group">
                                                 <p style={{"fontSize": "10px"}}><i>By registering, you are providing consent for sending Quiz/prize notifications to your mobile. </i></p>
                                                 <button type="button"  onClick={ () => {
-                                                        this.registerUser();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
+                                                                            this.registerUser();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }} className="btn pull-right">Register</button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
@@ -230,7 +296,7 @@ class Registration extends Component {
                                                 <div className="progress xs green" style={{"height": "5px", "backgroundColor": "rgb(0, 150, 136)"}}></div>
                                                 <h3>  Hi {this.state.name}!</h3>
                                                 <p>Congratulations!! Your Inter-Galactic VISA has been approved and we are waiting to host you on Agartha. </p> 
-                                                <Link className="btn" to={`/mainpage`}>   Go to Dashboard </Link>
+                
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
@@ -264,40 +330,15 @@ class Registration extends Component {
                                     </div>
                                 </div>
                 
-                                <div className="col-sm-4 col-sm-offset-1 social-login">
-                                    <div className="basic-login">                
-                                        <div className="text-center">
-                                            <img src="/img/Icon-100.png" alt="AGARTHA"/>
-                                        </div>
                 
-                                        <div className="in-press press-wired text-center">
-                                            <h4> THE FUTURE IS HISTORY</h4>
-                                        </div>
-                
-                                        <div className="panel-group">
-                                            <div className="panel panel-default">
-                                            </div>
-                                            <div className="panel panel-default">
-                                                <div className="panel-heading">
-                                                    <p>"Space-ship" bound to Agartha will be taking off on  <b>4-Oct-2018. </b> 
-                                                        Make the most of this once in a lifetime opportunity to travel the cosmos.
-                                                    </p> 
-                                                </div>
-                
-                                            </div>
-                                        </div>     
-                
-                                    </div>  
-                
-                                </div>
                             </div>
                         </div>
                     </div>
                 
                 </div>
 
-                                                                                    );
-                                                    }
-                                                }
+                                                                                                        );
+                                                                    }
+                                                                }
 
-                                                export default withRouter(Registration);
+                                                                export default withRouter(Registration);

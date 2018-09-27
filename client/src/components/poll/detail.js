@@ -161,26 +161,20 @@ class Detail extends Component {
                                 
                                     {optionList}
                                     <br/>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
                                        
                                     { (()=>{
                                        if(!this.state.disabled) {
-                                          return (
-                                                  <div>
-                           
-                                    
-                                  <Link style={{"width":"123px"}} className="btn  btn-primary pull-right" to={`/mainpage`}>  Back </Link>
-                                  <button type="button" style={{"width":"123px"}} onClick={() => {  this.submitHandler(this.state.detail[0].type) }} 
+                                          return ( <div>
+                                    <Link style={{"width":"123px"}} className="btn  btn-primary pull-right" to={`/mainpage`}>  Back </Link>
+                                    <button type="button" style={{"width":"123px"}} onClick={() => {  this.submitHandler(this.state.detail[0].type) }} 
                                               className="btn"> Submit</button>
-                                
-                            </div>            
+                                     </div>            
                                     )  
-                                       }
+                                       }else{
+                                       
+                                        return ( <Link style={{"width":"123px"}} className="btn  btn-primary " to={`/mainpage`}>  Back </Link>)
+                                        
+                                        }
                                      })()
                                      }
                                 </div>

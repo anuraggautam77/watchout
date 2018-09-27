@@ -28,7 +28,10 @@ const SERVICE_CONST = {
     FLOOR_WISE_COUNT: 'floorwsie',
     ADMIN_REGISTER: 'register',
     ADMIN_LOGIN: 'adminlogin',
-    UPDATE_DEVICE:'updatedeviceid'
+    UPDATE_DEVICE:'updatedeviceid',
+    
+    LOGIN_USER:'getuserdetail'
+    
 };
 
 module.exports = (apiRoutes) => {
@@ -81,6 +84,15 @@ module.exports = (apiRoutes) => {
                  res.json({success: true});
           })
     });
+    
+     apiRoutes.post(`/${SERVICE_CONST.LOGIN_USER}`, function (req, res) {
+        
+          AppModel.loginuser(req.body, function (result) {
+                res.json({success: true, detail:result});
+          })
+    });
+    
+    
 
 
 

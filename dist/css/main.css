@@ -102,6 +102,8 @@
   /*--------------------------------------------------------------------------
     +	Buttons Style
     --------------------------------------------------------------------------*/ }
+  .application hr {
+    border-top: 1px solid #0a0202; }
   .application .overpop {
     z-index: 1;
     position: absolute;
@@ -211,7 +213,6 @@
     color: #2f556d; }
   .application .service-wrapper {
     background: #FFF;
-    margin: 20px 10px;
     text-align: center;
     padding: 30px 20px;
     -webkit-border-radius: 5px;
@@ -1216,7 +1217,7 @@
     opacity: 1; }
   .application .section-breadcrumbs {
     background: #222;
-    background: rgba(34, 34, 34, 0.8);
+    background: linear-gradient(to right, #334d50, #cbcaa5);
     margin-bottom: 10px; }
   .application .section-breadcrumbs h1 {
     color: #FAFAFA;
@@ -1574,7 +1575,8 @@
   padding: 10px;
   text-align: center;
   font-size: 18px;
-  border: 1px dashed; }
+  border: 1px dashed;
+  margin-bottom: 0px; }
 
 .landing .well {
   min-height: 20px;

@@ -8,7 +8,7 @@ const smsURL = 'http://api.msg91.com/api/sendhttp.php?country=91&sender=AGARTA&r
 
 AppModel = {
     userRegistration: function (objdata, callback) {
-        console.log(objdata);
+        // console.log(objdata);
         var query = ``;
         if (objdata.referredby == '') {
             query = `merge (floor:Floor{fno:${objdata.floorno}})
@@ -35,6 +35,17 @@ AppModel = {
          merge (user:User{name:"${objdata.name}", devID:"${objdata.deviceid}",phone:"${objdata.mobileno}"})
          merge (user)-[:BELONGS_TO]->(location)-[:BELONGS_TO]->(floor) return ID(user) as id`; 
          */
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+
+
+    },
+    loginuser: function (objdata, callback) {
+
+        var query = `match (n:User{phone:"${objdata.mobileno}"} ) - [:REFERRAL_CODE] - (r:Referral) RETURN r.code as refcode , n.name as name , n.phone as phone , ID(n) as id`;
         driver.cypher({'query': query}, function (err, results) {
             if (err)
                 throw err;
@@ -238,13 +249,13 @@ AppModel = {
             flag = false;
         }
 
-        console.log(query);
+        // console.log(query);
         if (flag) {
             driver.cypher({'query': query}, function (err, results) {
                 if (err)
                     throw err;
 
-                console.log(results);
+                // console.log(results);
 
                 if (results.length > 0) {
                     results[0].type = objdata.type;
