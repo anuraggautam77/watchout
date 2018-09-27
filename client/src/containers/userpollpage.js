@@ -13,7 +13,8 @@ class UserPollPage extends Component {
         super(props);
         this.state = {
             question: [],
-            already: false
+            already: false,
+            showMessgae:"dn"
 
         }
 
@@ -33,7 +34,15 @@ class UserPollPage extends Component {
                     'Content-Type': 'application/json'
                 }
             }).then(res => res.json()).then(json => {
-                this.setState({question: json.que, already: json.already});
+                 
+                 
+                 if(json.que.length>0){
+                       this.setState({question: json.que, already: json.already});
+                 }else{
+                       this.setState({...this.state,showMessgae: "db", already: json.already});
+                 }
+                 
+              
             }); 
                 
             }else{
@@ -59,6 +68,22 @@ class UserPollPage extends Component {
                             if (!this.state.already) {
                                 if (this.state.question.length > 0) {
                                         return (<Detail id={this.props.match.params.id} quedata={this.state.question} />)
+                    }else{
+                                    return (  <div>
+                                            <div className="section section-breadcrumbs">
+                                                <div className="container">
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <h1> No Question found.  !! 
+                                                            <br/> <br/>
+                                                             <Link className="btn " to={`/`}>  Back To Dashboard  </Link>
+                                                            </h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                        </div>)
                     }  
                     }else{
 
@@ -67,7 +92,7 @@ class UserPollPage extends Component {
                                                 <div className="container">
                                                     <div className="row">
                                                         <div className="col-md-6">
-                                                            <h1> You have already Applied for this Question Earlier  !! 
+                                                            <h1> You have already applied for this Question Earlier  !! 
                                                             <br/> <br/>
                                                              <Link className="btn " to={`/`}>  Back To Dashboard  </Link>
                                                             </h1>

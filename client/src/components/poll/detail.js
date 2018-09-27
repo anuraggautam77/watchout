@@ -188,7 +188,10 @@ class Detail extends Component {
                     <div className={`col-sm-6 col-xs-12 `}>
                      <div className="alert alert-success" role="alert">
                             <strong> Congratulations!!!</strong> You made it .
+                            
                     </div>
+                    
+                      <Link style={{"width":"123px"}} className="btn  btn-primary" to={`/mainpage`}>  Back </Link>
                     </div>
                )  
                     }else{
@@ -197,6 +200,7 @@ class Detail extends Component {
                      <div className="alert alert-danger" role="alert">
                              <strong> Sorry !!!  </strong>  Better Luck next time.
                     </div>
+                      <Link style={{"width":"123px"}} className="btn  btn-primary" to={`/mainpage`}>  Back </Link>
                     </div>                           
                  )        
                                         }
