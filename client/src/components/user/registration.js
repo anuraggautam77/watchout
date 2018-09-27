@@ -47,7 +47,7 @@ class Registration extends Component {
     componentWillMount() {
         var devicetoken = window.localStorage.getItem('deviceToken');
         var subscriber = window.localStorage.getItem('subscriber');
-        if (subscriber !== null && devicetoken !== null) {
+        if (subscriber !== null ) {
               this.props.history.push('/mainpage');
         }
 
@@ -251,7 +251,7 @@ class Registration extends Component {
                                                             > <WhatsappIcon size={32} round={true} />
                                                         </WhatsappShareButton>
                                                         <a href={`mailto:?subject=Referral Code ${window.localStorage.getItem('referralcode')}&body= url :${location.origin}/home/${window.localStorage.getItem('referralcode')}`}> <span style={{"fontSize": "20px", "color": "green", "top": "4px"}} className='glyphicon glyphicon-envelope'></span></a>
-                                                        &nbsp; <a className="hidden-md" style={{"fontSize": "20px", "color": "green", "top": "9px"}} href={`sms://?&body=${window.localStorage.getItem('referralcode')}`} >SMS</a>
+                                                        &nbsp; <a className="hidden-md" style={{"fontSize": "20px", "color": "green", "top": "9px"}} href={`sms://?&body=${location.origin}/home/${window.localStorage.getItem('referralcode')} Code=${window.localStorage.getItem('referralcode')}`} >SMS</a>
                 
                 
                                                     </div>
