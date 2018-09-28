@@ -199,7 +199,7 @@ class Registration extends Component {
                                         <div className={`${this.state.showform}`}>
                                             <form>
                                                 <div className="form-group">
-                                                    <label htmlFor="restore-email"><b>Sign-up</b></label>
+                                                    <label htmlFor="restore-email"><b>Sign-In</b></label>
                                                     <input className="form-control" type="text" size="20" ref="mobilenolng"  minLength="9" maxLength="10"  placeholder="Enter your registered Mobile number!"/>
                                                 </div>
                                                 <div className="form-group">
