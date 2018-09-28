@@ -74,7 +74,7 @@ class UserPollPage extends Component {
                                                 <div className="container">
                                                     <div className="row">
                                                         <div className="col-md-6">
-                                                            <h1> No Question found.  !! 
+                                                            <h1> 
                                                             <br/> <br/>
                                                              <Link className="btn " to={`/`}>  Back To Dashboard  </Link>
                                                             </h1>
