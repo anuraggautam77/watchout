@@ -6,6 +6,8 @@ import Landing from '../containers/landing';
 import FootFall from '../containers/footfall';
 import UserPollPage from '../containers/userpollpage';
 
+import VideoPage from '../containers/videopage';
+
 export default class Routing extends Component {
     
     constructor(props) {
@@ -19,6 +21,7 @@ export default class Routing extends Component {
                      <Route path="/" exact component={Landing} />
                      <Route path="/home/:id" exact component={Landing} />
                      <Route path="/mainpage" exact component={MainPage} />
+                      <Route path="/video" exact component={VideoPage} />
                      <Route path="/footfall" exact component={FootFall} />
                      <Route path="/question/:id/:type" exact component={UserPollPage} />
                     </div>
