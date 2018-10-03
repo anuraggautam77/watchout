@@ -443,6 +443,16 @@ AppModel = {
             callback(results);
         });
 
+    },
+    rateus: function (objdata, callback) {
+         var query = `merge (userrating:UserRating{rating:"${objdata.rating}"}) 
+                merge (userphone:UserPhone{mobile:"${objdata.mobile}"}) 
+                merge (userrating)-[:GivenBy]-(userphone)`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
     }
 
 }

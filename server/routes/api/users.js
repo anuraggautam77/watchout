@@ -30,7 +30,8 @@ const SERVICE_CONST = {
     ADMIN_LOGIN: 'adminlogin',
     UPDATE_DEVICE:'updatedeviceid',
     
-    LOGIN_USER:'getuserdetail'
+    LOGIN_USER:'getuserdetail',
+    RATE_ME: 'rateus'
     
 };
 
@@ -92,6 +93,12 @@ module.exports = (apiRoutes) => {
           })
     });
     
+    apiRoutes.post(`/${SERVICE_CONST.RATE_ME}`, function (req, res) {
+        
+        AppModel.rateus(req.body, function (result) {
+              res.json({success: true, detail:result});
+        })
+  });
     
 
 
