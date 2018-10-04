@@ -66,7 +66,7 @@ class PollList extends Component {
                        return (
                         <li className={`list-group-item`} style={{"textAlign": "left"}}   key={i}>  
                          <span>Q{i+1}. {option.question}</span><br/>  
-                         <span>And the winner is  <strong>{option.name}</strong></span> 
+                         <span>  <strong>{option.name}</strong></span> 
                    </li>);  
                 }
                
@@ -129,7 +129,7 @@ class PollList extends Component {
                         
                                             <div className="col-md-5 col-sm-12" >
                                                 <div className="portfolio-item-description"  style={{"backgroundColor": "#efeff1", "borderRadius": "5px", "padding": "14px", "margin": "17px"}}>
-                                                    <h3> <img src="/img/balloon.jpg" style ={{"borderRadius": "50%"}} /> We have a winners list!!</h3>
+                                                    <h3> <img src="/img/balloon.jpg" style ={{"borderRadius": "50%"}} /> .... And the winners are !!</h3>
                                                     <img src="/img/winner.png" style={{"width": "100%"}} />
                                                     <div className="panel-body text-center" style={{"padding": "0"}} >
                                                         {  (() => this.winnerlist())() }
