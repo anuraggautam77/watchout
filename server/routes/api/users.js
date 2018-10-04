@@ -31,7 +31,8 @@ const SERVICE_CONST = {
     UPDATE_DEVICE:'updatedeviceid',
     
     LOGIN_USER:'getuserdetail',
-    RATE_ME: 'rateus'
+    RATE_ME: 'rateus',
+    WINNERS:'winnerlist'
     
 };
 
@@ -321,6 +322,13 @@ module.exports = (apiRoutes) => {
     apiRoutes.post(`/${SERVICE_CONST.SUBMIT_QUESTION}`, (req, res) => {
         AppModel.submitQue(req.body, (results, type) => {
             res.json({status: "success", result: results, type});
+        });
+    });
+    
+    
+    apiRoutes.post(`/${SERVICE_CONST.WINNERS}`, (req, res) => {
+        AppModel.winnerlist(req.body, (results, type) => {
+            res.json({status: "success", winnerlist: results});
         });
     });
 

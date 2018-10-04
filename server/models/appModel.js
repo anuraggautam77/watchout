@@ -453,6 +453,16 @@ AppModel = {
                 throw err;
             callback(results);
         });
+    },
+    
+    winnerlist:function(objdata, callback){
+         var query = `match (wl:WinnerList) return wl.qus as question, wl.wname as name, wl.pno as phone`;
+        driver.cypher({'query': query}, function (err, results) {
+            if (err)
+                throw err;
+            callback(results);
+        });
+        
     }
 
 }

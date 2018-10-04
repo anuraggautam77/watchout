@@ -124,12 +124,11 @@ class SpotReg extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <h1>Footfall Registration</h1>
+                                    <h1>Footfall</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
                     <div className="section">
                         <div className="container">
                             <div className="row">
