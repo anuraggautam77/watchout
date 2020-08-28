@@ -23,7 +23,7 @@
     "forEachAsync": "^3.0.0",
     "hashids": "^1.2.2",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.17",
     "morgan": "^1.9.1",
     "neo4j": "^2.0.0-RC2",
     "nodemon": "^1.17.3",
