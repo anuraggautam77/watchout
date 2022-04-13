@@ -14,7 +14,7 @@
     "start": "node server"
   },
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "bcrypt-nodejs": "0.0.3",
     "chart.js": "^2.7.2",
     "cors": "^2.8.4",
