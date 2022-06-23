@@ -26,7 +26,7 @@
     "lodash": "^4.17.5",
     "morgan": "^1.9.1",
     "neo4j": "^2.0.0-RC2",
-    "nodemon": "^1.17.3",
+    "nodemon": "^2.0.17",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-masonry-component": "^6.2.1",
